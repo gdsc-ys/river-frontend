@@ -1,10 +1,16 @@
-import { TARGET_SITE } from './data/urls';
-import useClone from './hooks/useClone';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LoginPage from './pages/login';
+import MainPage from './pages/main';
 
 function App() {
-  useClone(TARGET_SITE);
-
-  return <></>;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
