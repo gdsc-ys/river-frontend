@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-const Header = (originalElement) => {
-  console.log(originalElement);
-
+const Header = () => {
   return (
     <Wrapper>
       <Title>River</Title>
