@@ -1,5 +1,5 @@
-import { TARGET_SITE } from "./data/urls";
-import useClone from "./hooks/useClone";
+import { TARGET_SITE } from './data/urls';
+import useClone from './hooks/useClone';
 
 function App() {
   useClone(TARGET_SITE);

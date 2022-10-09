@@ -1,6 +1,6 @@
-import { useCallback, useEffect } from "react";
-import { removeProtocol } from "../utils/converter";
-import { run } from "../utils/runner";
+import { useCallback, useEffect } from 'react';
+import { removeProtocol } from '../utils/converter';
+import { run } from '../utils/runner';
 
 /**
  * Apply target's document styles and scripts
@@ -13,11 +13,11 @@ const useClone = (target) => {
   const cloneSite = useCallback(
     async (target) => {
       try {
-        const response = await fetch(target, { method: "GET" });
+        const response = await fetch(target, { method: 'GET' });
         const raw = await response.text();
 
         const parser = new DOMParser();
-        const targetDocument = parser.parseFromString(raw, "text/html");
+        const targetDocument = parser.parseFromString(raw, 'text/html');
 
         // Append styles
         targetDocument
@@ -38,7 +38,7 @@ const useClone = (target) => {
         console.error(error);
       }
     },
-    [currentHost, targetHost]
+    [currentHost, targetHost],
   );
 
   useEffect(() => {

@@ -1,1 +1,1 @@
-export const TARGET_SITE = "http://yscec.site:80";
+export const TARGET_SITE = 'http://yscec.site:80';

@@ -13,7 +13,7 @@ export const addProtocol = (target, protocol) => {
  * @param {string} target URL w/ protocol
  */
 export const removeProtocol = (target) => {
-  const result = target.replace(/.*:\/\//, "");
+  const result = target.replace(/.*:\/\//, '');
 
   return result;
 };
