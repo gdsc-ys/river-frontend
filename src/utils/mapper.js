@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import { createRoot } from 'react-dom/client';
 
 /**
@@ -5,22 +6,26 @@ import { createRoot } from 'react-dom/client';
  * @param {Record<string, JSX.Element>} map Component map
  */
 export const mapper = (map) => {
-  document.createElement = (function (func) {
-    return function () {
-      /**
-       * @type {Element}
-       */
-      const element = func.apply(this, arguments);
+  const appendChild = Element.prototype.appendChild;
 
-      setTimeout(() => {
-        Object.entries(map).map(([className, component]) => {
-          if (element.classList.contains(className)) {
-            createRoot(element).render(component);
-          }
-        });
-      }, 0);
+  const targets = Object.keys(map);
+  const virtualRoot = document.createElement('div');
 
-      return element;
-    };
-  })(document.createElement);
+  /**
+   * @param {Element} element
+   */
+  Element.prototype.appendChild = function (element) {
+    const [matchedTarget] = targets.filter((target) =>
+      element.classList?.contains(target),
+    );
+
+    if (matchedTarget) {
+      const component = createPortal(map[matchedTarget], this);
+      createRoot(virtualRoot).render(component);
+
+      return null;
+    }
+
+    return appendChild.apply(this, arguments);
+  };
 };

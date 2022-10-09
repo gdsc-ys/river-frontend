@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const Header = () => {
+const Header = (originalElement) => {
+  console.log(originalElement);
+
   return (
     <Wrapper>
       <Title>River</Title>
@@ -12,7 +14,7 @@ export default Header;
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
