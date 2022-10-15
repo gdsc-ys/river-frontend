@@ -30,7 +30,7 @@ const Header = () => {
         >
           Docs
         </Extlink>
-        <Extlink href="/auth/login">Login</Extlink>
+        <Extlink href="/login">Login</Extlink>
       </LinkWrapper>
     </Wrapper>
   );
