@@ -7,7 +7,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="*" element={<MainPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/auth/login" element={<LoginPage />} />
       </Routes>
     </Router>
   );
