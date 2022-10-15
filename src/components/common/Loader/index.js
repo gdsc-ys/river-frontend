@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import { fullscreen } from '../../../styles/layout';
+import { fullscreen, flexCenter } from '../../../styles/layout';
 
 const Loader = () => {
   return (
     <Wrapper>
       <Title>River</Title>
+      <Description>The Next Gen MLOps Tracker</Description>
     </Wrapper>
   );
 };
@@ -12,11 +13,9 @@ const Loader = () => {
 export default Loader;
 
 const Wrapper = styled.div`
-  ${fullscreen}
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${fullscreen};
+  ${flexCenter({ horizontal: false })};
+  line-height: 1.2;
 `;
 
 const Title = styled.span`
@@ -26,4 +25,12 @@ const Title = styled.span`
 
   color: black;
   opacity: 0.5;
+`;
+
+const Description = styled.span`
+  font-size: 36px;
+  font-weight: 500;
+
+  color: black;
+  opacity: 0.35;
 `;

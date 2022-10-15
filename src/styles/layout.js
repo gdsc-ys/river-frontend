@@ -5,12 +5,12 @@ export const fullscreen = css`
   min-height: 100vh;
 `;
 
-export const flexCenter = ({ horizontal }) => css`
+export const flexCenter = ({ horizontal = true }) => css`
   // centering using block
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: ${horizontal || 'row'};
+  flex-direction: ${horizontal ? 'row' : 'column'};
 `;
 
 export const absCenter = css`
