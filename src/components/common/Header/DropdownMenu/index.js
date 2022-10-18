@@ -71,7 +71,7 @@ const Wrapper = styled.ul`
   ${flexCenter({ horizontal: false })};
   gap: 10px;
   position: absolute;
-  top: 42px;
+  top: 30px;
   left: 0px;
 
   padding: 20px;

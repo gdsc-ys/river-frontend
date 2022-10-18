@@ -1,3 +1,31 @@
+/* make background color white */
+
+html {
+  --main-bg-color: #f9f9f9;
+}
+
+#root {
+  background-color: var(--main-bg-color);
+}
+
+.du-bois-light-tree-list-holder-inner {
+  background-color: var(--main-bg-color);
+}
+
+.ant-collapse-item {
+  background-color: var(--main-bg-color);
+}
+
+.ag-root {
+  background-color: var(--main-bg-color);
+}
+
 .css-1dw6hj0 {
-  margin-top: 55px;
+  margin-top: 40px;
+  margin-left: 50px;
+}
+
+.outer-container {
+  margin-top: 40px;
+  margin-left: 50px;
 }

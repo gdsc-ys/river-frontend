@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 import styled, { css } from 'styled-components';
 import { flexCenter } from '../../../styles/layout';
-import { MdKeyboardArrowDown } from 'react-icons/md';
 import DropdownMenu from './DropdownMenu';
 
 const Header = () => {
@@ -66,18 +66,14 @@ const linkStyleWrap = css`
 
 const Wrapper = styled.nav`
   width: 100%;
-  height: 55px;
+  height: 40px;
   ${flexCenter};
-  background-color: #000000;
+  background-color: black;
 
   position: fixed;
   top: 0;
 
   z-index: 100;
-
-  & ~ div {
-    margin-top: 55px;
-  }
 `;
 
 const Title = styled.h1`
@@ -85,7 +81,7 @@ const Title = styled.h1`
   margin-block-end: 0;
   margin: 0 auto;
 
-  color: white;
+  color: whitesmoke;
 
   font-size: 24px;
   font-weight: 700;
@@ -128,7 +124,7 @@ const InternalLinks = styled.ul`
 const InternalLink = styled.li`
   ${flexCenter({ horizontal: false })};
   position: relative;
-  color: whitesmoke;
+  color: white;
   background-color: transparent;
   list-style: none;
 
@@ -137,21 +133,9 @@ const InternalLink = styled.li`
 
   line-height: 1;
   padding-inline-start: 0;
-  padding: 10px;
-
-  border-color: transparent;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 8px;
-
-  transition: border-color 0.05s ease-in-out;
+  padding: 5px;
 
   cursor: pointer;
-
-  &:hover {
-    border-color: #505363;
-    border-radius: 8px;
-  }
 
   a {
     ${linkStyleWrap}
