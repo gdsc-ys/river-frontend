@@ -6,7 +6,7 @@ export const fullscreen = css`
 `;
 
 export const flexCenter = ({ horizontal = true }) => css`
-  // centering using block
+  // centering using flexbox
   display: flex;
   justify-content: center;
   align-items: center;
