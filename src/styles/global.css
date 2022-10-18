@@ -20,6 +20,8 @@ html {
   background-color: var(--main-bg-color);
 }
 
+/* Reposition body elements for Header & Sidebar */
+
 .css-1dw6hj0 {
   margin-top: 40px;
   margin-left: 50px;
