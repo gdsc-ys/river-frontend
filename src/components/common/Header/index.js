@@ -31,7 +31,7 @@ const Header = () => {
           {/* TODO: Make it dropdown menu */}
           <DropdownWrapper>
             More
-            <DownChevron isHovered={isHoverMoreTab} />
+            <DownChevron ishovered={isHoverMoreTab} />
             {isHoverMoreTab && <DropdownMenu />}
           </DropdownWrapper>
         </InternalLink>
@@ -67,9 +67,17 @@ const linkStyleWrap = css`
 const Wrapper = styled.nav`
   width: 100%;
   height: 55px;
-  ${flexCenter}
-
+  ${flexCenter};
   background-color: #000000;
+
+  position: fixed;
+  top: 0;
+
+  z-index: 100;
+
+  & ~ div {
+    margin-top: 55px;
+  }
 `;
 
 const Title = styled.h1`
@@ -163,7 +171,7 @@ const DropdownWrapper = styled.div`
 const DownChevron = styled(MdKeyboardArrowDown)`
   font-size: 20px;
 
-  transform: rotate(${(props) => (props.isHovered ? '180deg' : '360deg')});
+  transform: rotate(${(props) => (props.ishovered ? '180deg' : '360deg')});
 
   transition: transform 0.15s ease-in-out;
 `;

@@ -81,7 +81,7 @@ const Wrapper = styled.ul`
 
   cursor: auto;
 
-  z-index: 1;
+  z-index: 10;
 `;
 
 const Menu = styled.li`
