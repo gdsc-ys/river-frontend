@@ -101,7 +101,7 @@ const Menu = styled.li`
 
   &:hover ${ChevronRight} {
     opacity: 1;
-    right: 30px;
+    right: 35px;
   }
 `;
 

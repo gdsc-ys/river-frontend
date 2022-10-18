@@ -21,10 +21,10 @@ const Header = () => {
           <a href="/#/models">Models</a>
         </InternalLink>
         <InternalLink
-          onMouseEnter={(event) => {
+          onMouseEnter={() => {
             setIsHoverMoreTab(true);
           }}
-          onMouseLeave={(event) => {
+          onMouseLeave={() => {
             setIsHoverMoreTab(false);
           }}
         >
@@ -33,7 +33,6 @@ const Header = () => {
             More
             <DownChevron isHovered={isHoverMoreTab} />
             {isHoverMoreTab && <DropdownMenu />}
-            {/* <DropdownMenu /> */}
           </DropdownWrapper>
         </InternalLink>
       </InternalLinks>
@@ -109,7 +108,7 @@ const InternalLinks = styled.ul`
   gap: 15px;
 
   position: relative;
-  left: 150px;
+  left: 125px;
 
   margin: 0;
   padding: 0;
@@ -153,7 +152,7 @@ const InternalLink = styled.li`
 
 const TitleLink = styled(Extlink)`
   position: relative;
-  left: 100px;
+  left: 75px;
 `;
 
 const DropdownWrapper = styled.div`
