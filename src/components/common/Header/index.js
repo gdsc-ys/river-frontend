@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { flexCenter } from '../../../styles/layout';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import DropdownMenu from './DropdownMenu';
 
 const Header = () => {
+  const [isHoverMoreTab, setIsHoverMoreTab] = useState(false);
+
   return (
     <Wrapper>
       {/* TODO: Change Title to favicon! */}
@@ -17,35 +20,30 @@ const Header = () => {
         <InternalLink>
           <a href="/#/models">Models</a>
         </InternalLink>
-        <InternalLink>
+        <InternalLink
+          onMouseEnter={(event) => {
+            setIsHoverMoreTab(true);
+          }}
+          onMouseLeave={(event) => {
+            setIsHoverMoreTab(false);
+          }}
+        >
           {/* TODO: Make it dropdown menu */}
           <DropdownWrapper>
             More
-            <MdKeyboardArrowDown />
+            <DownChevron isHovered={isHoverMoreTab} />
+            {isHoverMoreTab && <DropdownMenu />}
+            {/* <DropdownMenu /> */}
           </DropdownWrapper>
         </InternalLink>
       </InternalLinks>
       <ExtLinkWrapper>
-        <Extlink
-          href="https://github.com/gdsc-ys/river-frontend"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          MLRiver Github
-        </Extlink>
         <Extlink
           href="https://github.com/mlflow/mlflow"
           target="_blank"
           rel="noopener noreferrer"
         >
           MLFlow Github
-        </Extlink>
-        <Extlink
-          href="https://www.mlflow.org/docs/latest/index.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Docs
         </Extlink>
         <Extlink href="/login">Login</Extlink>
       </ExtLinkWrapper>
@@ -139,6 +137,10 @@ const InternalLink = styled.li`
   border-width: 1px;
   border-radius: 8px;
 
+  transition: border-color 0.05s ease-in-out;
+
+  cursor: pointer;
+
   &:hover {
     border-color: #505363;
     border-radius: 8px;
@@ -157,4 +159,12 @@ const TitleLink = styled(Extlink)`
 const DropdownWrapper = styled.div`
   ${flexCenter};
   gap: 5px;
+`;
+
+const DownChevron = styled(MdKeyboardArrowDown)`
+  font-size: 20px;
+
+  transform: rotate(${(props) => (props.isHovered ? '180deg' : '360deg')});
+
+  transition: transform 0.15s ease-in-out;
 `;
