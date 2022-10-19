@@ -1,20 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@public/*": ["public/*"],
-      "@assets/*": ["src/assets/*"],
-      "@components/*": ["src/components/*"],
-      "@contexts/*": ["src/contexts/*"],
-      "@data/*": ["src/data/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@pages/*": ["src/pages/*"],
-      "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"]
-    },
-    "target": "ES6",
-    "module": "esnext",
-    "allowJs": true,
-    "strict": true
-  }
+    "baseUrl": "src"
+  },
+  "includes": ["src"]
 }

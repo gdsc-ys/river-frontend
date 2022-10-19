@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { flexCenter, fullscreen } from '../../styles/layout';
+import { flexCenter, fullscreen } from 'styles/layout';
 
 const LoginPage = () => {
   return (
