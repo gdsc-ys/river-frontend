@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { fullscreen, flexCenter } from '@styles/layout';
+import { fullscreen, flexCenter } from 'styles/layout';
 
 const Loader = () => {
   return (

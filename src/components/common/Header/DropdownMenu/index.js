@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
-import { flexCenter } from '../../../../styles/layout';
 import { IoShuffle } from 'react-icons/io5';
 import { HiOutlineDocumentText } from 'react-icons/hi';
 import { FaGithub } from 'react-icons/fa';
 import { MdChevronRight } from 'react-icons/md';
+import { flexCenter } from 'styles/layout';
 
 const DropdownMenu = () => {
   return (

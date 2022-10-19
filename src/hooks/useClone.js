@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
-import { removeProtocol } from '@utils/converter';
-import { run } from '@utils/runner';
+import { removeProtocol } from 'utils/converter';
+import { run } from 'utils/runner';
 
 /**
  * Apply target's document styles and scripts

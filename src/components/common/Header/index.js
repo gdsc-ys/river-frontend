@@ -1,4 +1,4 @@
-import { flexCenter } from '@styles/layout';
+import { flexCenter } from 'styles/layout';
 import { useState } from 'react';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import styled, { css } from 'styled-components';
