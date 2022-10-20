@@ -9,7 +9,7 @@ const MainPage = () => {
   mapper(componentMap);
 
   // Clone MLflow site
-  useClone(TARGET_SITE);
+  // useClone(TARGET_SITE);
 
   return <Loader />;
 };
