@@ -1,3 +1,5 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import RootPage from '@pages';
 import DeployPage from '@pages/deploy';
 import VersionPage from '@pages/deploy/version';
@@ -7,7 +9,6 @@ import ExperimentPage from '@pages/tracking/experiment';
 import LogPage from '@pages/tracking/log';
 import OverviewPage from '@pages/tracking/overview';
 import TablePage from '@pages/tracking/table';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (

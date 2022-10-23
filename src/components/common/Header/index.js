@@ -1,7 +1,8 @@
-import LabelNavigation from '@components/common/LabelNavigation';
-import { deployPageUrl, trackingPageUrl } from '@data/urls';
 import { BiUser } from 'react-icons/bi';
 import styled from 'styled-components';
+
+import LabelNavigation from '@components/common/LabelNavigation';
+import { deployPageUrl, trackingPageUrl } from '@data/urls';
 
 const Header = () => {
   return (

@@ -1,3 +1,7 @@
+import { AiOutlineExperiment, AiOutlineTable } from 'react-icons/ai';
+import { MdInfoOutline, MdSegment } from 'react-icons/md';
+import styled from 'styled-components';
+
 import IconNavigation from '@components/common/IconNavigation';
 import {
   experimentPageUrl,
@@ -5,9 +9,6 @@ import {
   overviewPageUrl,
   tablePageUrl,
 } from '@data/urls';
-import { AiOutlineExperiment, AiOutlineTable } from 'react-icons/ai';
-import { MdInfoOutline, MdSegment } from 'react-icons/md';
-import styled from 'styled-components';
 
 const Sidebar = () => {
   return (

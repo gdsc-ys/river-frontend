@@ -1,7 +1,8 @@
-import IconNavigation from '@components/common/IconNavigation';
-import { versionPageUrl } from '@data/urls';
 import { VscVersions } from 'react-icons/vsc';
 import styled from 'styled-components';
+
+import IconNavigation from '@components/common/IconNavigation';
+import { versionPageUrl } from '@data/urls';
 
 const Sidebar = () => {
   return (

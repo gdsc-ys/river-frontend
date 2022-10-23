@@ -1,6 +1,7 @@
+import styled from 'styled-components';
+
 import GithubLogo from '@assets/GitHub-Mark-32px.png';
 import { absCenter, flexCenter, fullscreen } from '@styles/layout';
-import styled from 'styled-components';
 
 const LoginPage = () => {
   const handleLoginClick = () => {

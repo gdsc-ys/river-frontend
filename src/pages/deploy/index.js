@@ -1,7 +1,8 @@
-import Sidebar from '@components/deploy/Sidebar';
-import { versionPageUrl } from '@data/urls';
 import { Navigate, useOutlet } from 'react-router-dom';
 import styled from 'styled-components';
+
+import Sidebar from '@components/deploy/Sidebar';
+import { versionPageUrl } from '@data/urls';
 
 const DeployPage = () => {
   const outlet = useOutlet();
