@@ -1,161 +1,81 @@
-import { flexCenter } from 'styles/layout';
-import { useState } from 'react';
-import { MdKeyboardArrowDown } from 'react-icons/md';
+import { deployUrl, trackingUrl } from 'data/urls';
+import { Link, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import DropdownMenu from './DropdownMenu';
+import { BiUser } from 'react-icons/bi';
 
 const Header = () => {
-  const [isHoverMoreTab, setIsHoverMoreTab] = useState(false);
+  const location = useLocation();
+
+  const currentPath = location.pathname;
 
   return (
     <Wrapper>
-      {/* TODO: Change Title to favicon! */}
-      <TitleLink href="/#/experiments/0">
-        <Title>MLRiver</Title>
-      </TitleLink>
-      <InternalLinks>
-        <InternalLink>
-          <a href="/#/experiments/0">Experiments</a>
-        </InternalLink>
-        <InternalLink>
-          <a href="/#/models">Models</a>
-        </InternalLink>
-        <InternalLink
-          onMouseEnter={() => {
-            setIsHoverMoreTab(true);
-          }}
-          onMouseLeave={() => {
-            setIsHoverMoreTab(false);
-          }}
+      <Icon>R</Icon>
+      <NavigationList>
+        <Navigation
+          to={trackingUrl}
+          isCurrentPath={currentPath === trackingUrl}
         >
-          {/* TODO: Make it dropdown menu */}
-          <DropdownWrapper>
-            More
-            <DownChevron ishovered={isHoverMoreTab} />
-            {isHoverMoreTab && <DropdownMenu />}
-          </DropdownWrapper>
-        </InternalLink>
-      </InternalLinks>
-      <ExtLinkWrapper>
-        <Extlink
-          href="https://github.com/mlflow/mlflow"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          MLFlow Github
-        </Extlink>
-        <Extlink href="/login">Login</Extlink>
-      </ExtLinkWrapper>
+          Tracking
+        </Navigation>
+        <Navigation to={deployUrl} isCurrentPath={currentPath === deployUrl}>
+          Deploy
+        </Navigation>
+      </NavigationList>
+      <BiUser size="24px" />
     </Wrapper>
   );
 };
 
 export default Header;
 
-const linkStyleWrap = css`
-  color: whitesmoke;
-
-  &:hover {
-    color: whitesmoke;
-  }
-
-  &:focus {
-    color: whitesmoke;
-  }
-`;
-
-const Wrapper = styled.nav`
-  width: 100%;
-  height: 40px;
-  ${flexCenter};
-  background-color: black;
-
-  position: fixed;
-  top: 0;
-
-  z-index: 100;
-`;
-
-const Title = styled.h1`
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin: 0 auto;
-
-  color: whitesmoke;
-
-  font-size: 24px;
-  font-weight: 700;
-
-  line-height: normal;
-`;
-
-const ExtLinkWrapper = styled.div`
-  width: 100%;
-
+const Wrapper = styled.header`
   display: flex;
-  justify-content: flex-end;
+  width: 100%;
   align-items: center;
 
-  padding-right: 40px;
+  padding: 20px;
+  box-sizing: border-box;
 
-  gap: 15px;
-`;
-
-const Extlink = styled.a`
-  font-size: 16px;
-  font-weight: 500;
-  ${linkStyleWrap}
-`;
-
-const InternalLinks = styled.ul`
-  ${flexCenter};
-  gap: 15px;
-
-  position: relative;
-  left: 125px;
-
-  margin: 0;
-  padding: 0;
-
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-`;
-
-const InternalLink = styled.li`
-  ${flexCenter({ horizontal: false })};
-  position: relative;
-  color: white;
-  background-color: transparent;
-  list-style: none;
-
-  font-size: 16px;
-  font-weight: 400;
-
-  line-height: 1;
-  padding-inline-start: 0;
-  padding: 5px;
-
-  cursor: pointer;
-
-  a {
-    ${linkStyleWrap}
+  > :not(:first-child) {
+    margin-left: 20px;
   }
 `;
 
-const TitleLink = styled(Extlink)`
-  position: relative;
-  left: 75px;
+// FIXME : Temp icon
+const Icon = styled.div`
+  width: 40px;
+  height: 40px;
+
+  background-color: skyblue;
+  border-radius: 50%;
+
+  line-height: 40px;
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
 `;
 
-const DropdownWrapper = styled.div`
-  ${flexCenter};
-  gap: 5px;
+const NavigationList = styled.div`
+  display: flex;
+  flex: 1 1 0;
 `;
 
-const DownChevron = styled(MdKeyboardArrowDown)`
-  font-size: 20px;
+const Navigation = styled(Link)`
+  padding: 10px 15px;
+  border-radius: 20px;
 
-  transform: rotate(${(props) => (props.ishovered ? '180deg' : '360deg')});
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
 
-  transition: transform 0.15s ease-in-out;
+  transition: background-color ease 0.3s, color ease 0.3s;
+
+  ${(props) =>
+    props.isCurrentPath &&
+    css`
+      background-color: #00000050;
+      color: white;
+    `}
 `;
