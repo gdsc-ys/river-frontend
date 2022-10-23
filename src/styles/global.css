@@ -1,33 +1,13 @@
-/* make background color white */
-
-html {
-  --main-bg-color: #f9f9f9;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#root {
-  background-color: var(--main-bg-color);
-}
-
-.du-bois-light-tree-list-holder-inner {
-  background-color: var(--main-bg-color);
-}
-
-.ant-collapse-item {
-  background-color: var(--main-bg-color);
-}
-
-.ag-root {
-  background-color: var(--main-bg-color);
-}
-
-/* Reposition body elements for Header & Sidebar */
-
-.css-1dw6hj0 {
-  margin-top: 40px;
-  margin-left: 50px;
-}
-
-.outer-container {
-  margin-top: 40px;
-  margin-left: 50px;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
