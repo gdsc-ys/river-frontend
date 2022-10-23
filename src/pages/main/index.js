@@ -7,12 +7,13 @@ const MainPage = () => {
     <Wrapper>
       <Header />
       <Sidebar />
+      Content
     </Wrapper>
   );
 };
 
 export default MainPage;
 
-const Wrapper = styled.div``;
-
-const Content = styled.div``;
+const Wrapper = styled.div`
+  padding: 100px 20px 20px 100px;
+`;
