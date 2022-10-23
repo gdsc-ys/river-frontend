@@ -1,4 +1,4 @@
-import { get, patch, post, remove } from 'utils/fetcher';
+import { get, patch, post, remove } from '@utils/fetcher';
 
 class ModelRepository {
   async getModels() {

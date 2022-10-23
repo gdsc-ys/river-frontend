@@ -1,7 +1,7 @@
+import Header from '@components/common/Header';
+import { trackingPageUrl } from '@data/urls';
 import { Navigate, useOutlet } from 'react-router-dom';
-import Header from 'components/common/Header';
 import styled from 'styled-components';
-import { trackingPageUrl } from 'data/urls';
 
 const RootPage = () => {
   const outlet = useOutlet();

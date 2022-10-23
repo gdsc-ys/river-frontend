@@ -1,4 +1,4 @@
-import { API_HOST } from 'data/urls';
+import { API_HOST } from '@data/urls';
 
 /**
  * Request GET

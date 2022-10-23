@@ -1,4 +1,4 @@
-import { get, post } from 'utils/fetcher';
+import { get, post } from '@utils/fetcher';
 
 class RunRepository {
   async getRun() {

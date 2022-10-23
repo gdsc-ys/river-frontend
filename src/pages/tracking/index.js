@@ -1,5 +1,5 @@
-import Sidebar from 'components/tracking/Sidebar';
-import { overviewPageUrl } from 'data/urls';
+import Sidebar from '@components/tracking/Sidebar';
+import { overviewPageUrl } from '@data/urls';
 import { Navigate, useOutlet } from 'react-router-dom';
 import styled from 'styled-components';
 

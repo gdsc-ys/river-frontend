@@ -1,4 +1,4 @@
-import { get } from 'utils/fetcher';
+import { get } from '@utils/fetcher';
 
 class ArtifactRepository {
   async getArtifacts() {

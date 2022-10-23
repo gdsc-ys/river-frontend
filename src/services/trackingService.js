@@ -1,4 +1,4 @@
-import ExperimentRepository from 'repositories/experimentRepository';
+import ExperimentRepository from '@repositories/experimentRepository';
 
 class TrackingService {
   constructor() {

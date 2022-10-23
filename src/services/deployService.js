@@ -1,4 +1,4 @@
-import ModelRepository from 'repositories/modelRepository';
+import ModelRepository from '@repositories/modelRepository';
 
 class DeployService {
   constructor() {

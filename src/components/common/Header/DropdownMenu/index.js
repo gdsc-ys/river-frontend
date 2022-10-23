@@ -1,9 +1,9 @@
-import styled, { css } from 'styled-components';
-import { IoShuffle } from 'react-icons/io5';
-import { HiOutlineDocumentText } from 'react-icons/hi';
+import { flexCenter } from '@styles/layout';
 import { FaGithub } from 'react-icons/fa';
+import { HiOutlineDocumentText } from 'react-icons/hi';
+import { IoShuffle } from 'react-icons/io5';
 import { MdChevronRight } from 'react-icons/md';
-import { flexCenter } from 'styles/layout';
+import styled, { css } from 'styled-components';
 
 const DropdownMenu = () => {
   return (

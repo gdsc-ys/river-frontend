@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 const LabelNavigation = ({ targetPath, children }) => {
   const { pathname: currentPath } = useLocation();
