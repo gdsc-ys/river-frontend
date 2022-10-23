@@ -3,35 +3,27 @@ import { Link, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { MdInfoOutline, MdSegment } from 'react-icons/md';
 import { AiOutlineExperiment, AiOutlineTable } from 'react-icons/ai';
+import IconNavigation from 'components/common/IconNavigation';
 
 const Sidebar = () => {
-  const location = useLocation();
-
-  const currentPath = location.pathname;
-
   return (
     <Wrapper>
-      <Navigation
-        to={overviewUrl}
-        isCurrentPath={currentPath.startsWith(overviewUrl)}
-      >
-        <MdInfoOutline size="25px" />
-      </Navigation>
-      <Navigation
-        to={experimentUrl}
-        isCurrentPath={currentPath.startsWith(experimentUrl)}
-      >
-        <AiOutlineExperiment size="25px" />
-      </Navigation>
-      <Navigation
-        to={tableUrl}
-        isCurrentPath={currentPath.startsWith(tableUrl)}
-      >
-        <AiOutlineTable size="25px" />
-      </Navigation>
-      <Navigation to={logUrl} isCurrentPath={currentPath.startsWith(logUrl)}>
-        <MdSegment size="25px" />
-      </Navigation>
+      <IconNavigation
+        targetPath={overviewUrl}
+        Icon={MdInfoOutline}
+        label="Overview"
+      />
+      <IconNavigation
+        targetPath={experimentUrl}
+        Icon={AiOutlineExperiment}
+        label="Experiment"
+      />
+      <IconNavigation
+        targetPath={tableUrl}
+        Icon={AiOutlineTable}
+        label="Table"
+      />
+      <IconNavigation targetPath={logUrl} Icon={MdSegment} label="Log" />
     </Wrapper>
   );
 };
