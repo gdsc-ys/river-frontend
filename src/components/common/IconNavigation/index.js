@@ -1,16 +1,15 @@
 import { Link, useLocation } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const IconNavigation = ({ targetPath, Icon, label }) => {
-  const location = useLocation();
-  const currentPath = location.pathname;
+const IconNavigation = ({ targetPath, Icon, children }) => {
+  const { pathname: currentPath } = useLocation();
 
   return (
     <Navigation
       to={targetPath}
-      $isCurrentPath={currentPath.startsWith(targetPath)}
-      $label={label}
+      $active={currentPath.startsWith(targetPath)}
+      $label={children}
     >
       <Icon size={25} />
     </Navigation>
@@ -20,7 +19,7 @@ const IconNavigation = ({ targetPath, Icon, label }) => {
 IconNavigation.propTypes = {
   targetPath: PropTypes.string.isRequired,
   Icon: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
 };
 
 export default IconNavigation;
@@ -35,15 +34,9 @@ const Navigation = styled(Link)`
   border-radius: 50%;
 
   text-decoration: none;
-  color: gray;
+  color: ${({ $active }) => ($active ? 'black' : '#0000004d')};
 
   transition: color ease 0.3s;
-
-  ${(props) =>
-    props.$isCurrentPath &&
-    css`
-      color: black;
-    `}
 
   ::after {
     position: absolute;

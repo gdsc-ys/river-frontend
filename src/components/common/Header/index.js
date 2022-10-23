@@ -1,30 +1,16 @@
 import { deployUrl, trackingUrl } from 'data/urls';
-import { Link, useLocation } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { BiUser } from 'react-icons/bi';
+import LabelNavigation from '../LabelNavigation';
 
 const Header = () => {
-  const location = useLocation();
-
-  const currentPath = location.pathname;
-
   return (
     <Wrapper>
       <Icon>R</Icon>
-      <NavigationList>
-        <Navigation
-          to={trackingUrl}
-          $isCurrentPath={currentPath.startsWith(trackingUrl)}
-        >
-          Tracking
-        </Navigation>
-        <Navigation
-          to={deployUrl}
-          $isCurrentPath={currentPath.startsWith(deployUrl)}
-        >
-          Deploy
-        </Navigation>
-      </NavigationList>
+      <NavigationContainer>
+        <LabelNavigation targetPath={trackingUrl}>Tracking</LabelNavigation>
+        <LabelNavigation targetPath={deployUrl}>Deploy</LabelNavigation>
+      </NavigationContainer>
       <BiUser size="24px" />
     </Wrapper>
   );
@@ -70,24 +56,7 @@ const Icon = styled.div`
   font-size: 18px;
 `;
 
-const NavigationList = styled.div`
+const NavigationContainer = styled.div`
   display: flex;
   flex: 1 1 0;
-`;
-
-const Navigation = styled(Link)`
-  padding: 5px 10px;
-
-  font-size: 17px;
-  font-weight: 600;
-  text-decoration: none;
-  color: gray;
-
-  transition: color ease 0.3s;
-
-  ${(props) =>
-    props.$isCurrentPath &&
-    css`
-      color: black;
-    `}
 `;

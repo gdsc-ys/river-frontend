@@ -1,6 +1,5 @@
 import { experimentUrl, logUrl, overviewUrl, tableUrl } from 'data/urls';
-import { Link, useLocation } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { MdInfoOutline, MdSegment } from 'react-icons/md';
 import { AiOutlineExperiment, AiOutlineTable } from 'react-icons/ai';
 import IconNavigation from 'components/common/IconNavigation';
@@ -8,22 +7,18 @@ import IconNavigation from 'components/common/IconNavigation';
 const Sidebar = () => {
   return (
     <Wrapper>
-      <IconNavigation
-        targetPath={overviewUrl}
-        Icon={MdInfoOutline}
-        label="Overview"
-      />
-      <IconNavigation
-        targetPath={experimentUrl}
-        Icon={AiOutlineExperiment}
-        label="Experiment"
-      />
-      <IconNavigation
-        targetPath={tableUrl}
-        Icon={AiOutlineTable}
-        label="Table"
-      />
-      <IconNavigation targetPath={logUrl} Icon={MdSegment} label="Log" />
+      <IconNavigation targetPath={overviewUrl} Icon={MdInfoOutline}>
+        Overview
+      </IconNavigation>
+      <IconNavigation targetPath={experimentUrl} Icon={AiOutlineExperiment}>
+        Experiment
+      </IconNavigation>
+      <IconNavigation targetPath={tableUrl} Icon={AiOutlineTable}>
+        Table
+      </IconNavigation>
+      <IconNavigation targetPath={logUrl} Icon={MdSegment}>
+        Log
+      </IconNavigation>
     </Wrapper>
   );
 };
@@ -44,24 +39,4 @@ const Wrapper = styled.aside`
 
   background-color: white;
   border-right: 1px solid #00000020;
-`;
-
-const Navigation = styled(Link)`
-  display: inline-flex;
-  padding: 20px;
-
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-
-  text-decoration: none;
-  color: gray;
-
-  transition: color ease 0.3s;
-
-  ${(props) =>
-    props.isCurrentPath &&
-    css`
-      color: black;
-    `}
 `;
