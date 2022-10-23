@@ -1,4 +1,4 @@
-import { TARGET_SITE } from 'data/urls';
+import { API_HOST } from 'data/urls';
 
 /**
  * Request GET
@@ -6,7 +6,7 @@ import { TARGET_SITE } from 'data/urls';
  * @returns {Promise<any>} Response data
  */
 export const get = async (url) => {
-  const response = await fetch(`${TARGET_SITE}${url}`, {
+  const response = await fetch(`${API_HOST}${url}`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   });
@@ -21,7 +21,7 @@ export const get = async (url) => {
  * @returns {Promise<any>} Response data
  */
 export const post = async (url, data) => {
-  const response = await fetch(`${TARGET_SITE}${url}`, {
+  const response = await fetch(`${API_HOST}${url}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
@@ -37,7 +37,7 @@ export const post = async (url, data) => {
  * @returns {Promise<any>} Response data
  */
 export const patch = async (url, data) => {
-  const response = await fetch(`${TARGET_SITE}${url}`, {
+  const response = await fetch(`${API_HOST}${url}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
@@ -52,7 +52,7 @@ export const patch = async (url, data) => {
  * @returns {Promise<any>} Response data
  */
 export const remove = async (url) => {
-  const response = await fetch(`${TARGET_SITE}${url}`, {
+  const response = await fetch(`${API_HOST}${url}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
   });
