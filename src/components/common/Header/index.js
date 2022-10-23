@@ -14,11 +14,14 @@ const Header = () => {
       <NavigationList>
         <Navigation
           to={trackingUrl}
-          isCurrentPath={currentPath === trackingUrl}
+          isCurrentPath={currentPath.startsWith(trackingUrl)}
         >
           Tracking
         </Navigation>
-        <Navigation to={deployUrl} isCurrentPath={currentPath === deployUrl}>
+        <Navigation
+          to={deployUrl}
+          isCurrentPath={currentPath.startsWith(deployUrl)}
+        >
           Deploy
         </Navigation>
       </NavigationList>
@@ -30,12 +33,22 @@ const Header = () => {
 export default Header;
 
 const Wrapper = styled.header`
-  display: flex;
-  width: 100%;
-  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  height: 80px;
+
+  padding: 0 20px;
   box-sizing: border-box;
+
+  background-color: white;
+  border-bottom: 1px solid #00000020;
+
+  z-index: 100;
 
   > :not(:first-child) {
     margin-left: 20px;
@@ -63,19 +76,18 @@ const NavigationList = styled.div`
 `;
 
 const Navigation = styled(Link)`
-  padding: 10px 15px;
-  border-radius: 20px;
+  padding: 5px 10px;
 
+  font-size: 17px;
   font-weight: 600;
   text-decoration: none;
-  color: black;
+  color: gray;
 
-  transition: background-color ease 0.3s, color ease 0.3s;
+  transition: color ease 0.3s;
 
   ${(props) =>
     props.isCurrentPath &&
     css`
-      background-color: #00000050;
-      color: white;
+      color: black;
     `}
 `;
