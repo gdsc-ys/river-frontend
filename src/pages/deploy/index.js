@@ -1,25 +1,24 @@
+import Sidebar from 'components/deploy/Sidebar';
+import { versionPageUrl } from 'data/urls';
 import { Navigate, useOutlet } from 'react-router-dom';
-import Header from 'components/common/Header';
 import styled from 'styled-components';
-import { trackingPageUrl } from 'data/urls';
 
-const RootPage = () => {
+const DeployPage = () => {
   const outlet = useOutlet();
 
   if (!outlet) {
-    return <Navigate to={trackingPageUrl} replace />;
+    return <Navigate to={versionPageUrl} replace />;
   }
-
   return (
     <Wrapper>
-      <Header />
+      <Sidebar />
       {outlet}
     </Wrapper>
   );
 };
 
-export default RootPage;
+export default DeployPage;
 
 const Wrapper = styled.div`
-  padding-top: 80px;
+  padding-left: 80px;
 `;

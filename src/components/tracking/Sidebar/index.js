@@ -1,22 +1,27 @@
-import { experimentUrl, logUrl, overviewUrl, tableUrl } from 'data/urls';
 import styled from 'styled-components';
 import { MdInfoOutline, MdSegment } from 'react-icons/md';
 import { AiOutlineExperiment, AiOutlineTable } from 'react-icons/ai';
 import IconNavigation from 'components/common/IconNavigation';
+import {
+  experimentPageUrl,
+  logPageUrl,
+  overviewPageUrl,
+  tablePageUrl,
+} from 'data/urls';
 
 const Sidebar = () => {
   return (
     <Wrapper>
-      <IconNavigation targetPath={overviewUrl} Icon={MdInfoOutline}>
+      <IconNavigation targetPath={overviewPageUrl} Icon={MdInfoOutline}>
         Overview
       </IconNavigation>
-      <IconNavigation targetPath={experimentUrl} Icon={AiOutlineExperiment}>
+      <IconNavigation targetPath={experimentPageUrl} Icon={AiOutlineExperiment}>
         Experiment
       </IconNavigation>
-      <IconNavigation targetPath={tableUrl} Icon={AiOutlineTable}>
+      <IconNavigation targetPath={tablePageUrl} Icon={AiOutlineTable}>
         Table
       </IconNavigation>
-      <IconNavigation targetPath={logUrl} Icon={MdSegment}>
+      <IconNavigation targetPath={logPageUrl} Icon={MdSegment}>
         Log
       </IconNavigation>
     </Wrapper>

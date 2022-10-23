@@ -1,15 +1,15 @@
-import { deployUrl, trackingUrl } from 'data/urls';
 import styled from 'styled-components';
 import { BiUser } from 'react-icons/bi';
 import LabelNavigation from '../LabelNavigation';
+import { deployPageUrl, trackingPageUrl } from 'data/urls';
 
 const Header = () => {
   return (
     <Wrapper>
       <Icon>R</Icon>
       <NavigationContainer>
-        <LabelNavigation targetPath={trackingUrl}>Tracking</LabelNavigation>
-        <LabelNavigation targetPath={deployUrl}>Deploy</LabelNavigation>
+        <LabelNavigation targetPath={trackingPageUrl}>Tracking</LabelNavigation>
+        <LabelNavigation targetPath={deployPageUrl}>Deploy</LabelNavigation>
       </NavigationContainer>
       <BiUser size="24px" />
     </Wrapper>
