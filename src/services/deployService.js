@@ -5,10 +5,10 @@ class DeployService {
     this.modelRepository = new ModelRepository();
   }
 
-  async getVersions() {
-    const versions = await this.modelRepository.getVersions();
+  async getVersion() {
+    const version = await this.modelRepository.getVersion();
 
-    return versions;
+    return version;
   }
 }
 
