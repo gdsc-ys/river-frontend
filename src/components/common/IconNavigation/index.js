@@ -58,6 +58,8 @@ const Navigation = styled(Link)`
     transform: translateY(-50%);
     opacity: 0;
     transition: opacity ease 0.3s;
+
+    pointer-events: none;
   }
 
   :hover::after {
