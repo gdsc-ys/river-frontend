@@ -14,13 +14,13 @@ const Header = () => {
       <NavigationList>
         <Navigation
           to={trackingUrl}
-          isCurrentPath={currentPath.startsWith(trackingUrl)}
+          $isCurrentPath={currentPath.startsWith(trackingUrl)}
         >
           Tracking
         </Navigation>
         <Navigation
           to={deployUrl}
-          isCurrentPath={currentPath.startsWith(deployUrl)}
+          $isCurrentPath={currentPath.startsWith(deployUrl)}
         >
           Deploy
         </Navigation>
@@ -86,7 +86,7 @@ const Navigation = styled(Link)`
   transition: color ease 0.3s;
 
   ${(props) =>
-    props.isCurrentPath &&
+    props.$isCurrentPath &&
     css`
       color: black;
     `}

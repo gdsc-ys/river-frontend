@@ -19,7 +19,7 @@ const IconNavigation = ({ targetPath, Icon, label }) => {
 
 IconNavigation.propTypes = {
   targetPath: PropTypes.string.isRequired,
-  Icon: PropTypes.node.isRequired,
+  Icon: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
 };
 
