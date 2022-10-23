@@ -1,6 +1,8 @@
+import ModelRepository from 'repositories/modelRepository';
+
 class DeployService {
-  constructor(modelRepository) {
-    this.modelRepository = modelRepository;
+  constructor() {
+    this.modelRepository = new ModelRepository();
   }
 
   async getVersions() {
@@ -10,4 +12,4 @@ class DeployService {
   }
 }
 
-export default DeployService;
+export const deployService = new DeployService();

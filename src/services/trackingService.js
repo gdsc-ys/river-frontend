@@ -1,6 +1,8 @@
+import ExperimentRepository from 'repositories/experimentRepository';
+
 class TrackingService {
-  constructor(experimentRepository) {
-    this.experimentRepository = experimentRepository;
+  constructor() {
+    this.experimentRepository = new ExperimentRepository();
   }
 
   async getExperiments() {
@@ -10,4 +12,4 @@ class TrackingService {
   }
 }
 
-export default TrackingService;
+export const trackingService = new TrackingService();
