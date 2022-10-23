@@ -1,3 +1,5 @@
+export const TARGET_SITE = 'http://yscec.site:80';
+
 export const trackingUrl = '/tracking';
 export const deployUrl = '/deploy';
 
