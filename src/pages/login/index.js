@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import GithubLogo from '@assets/GitHub-Mark-32px.png';
+import Button from '@components/common/Button';
 import { absCenter, flexCenter, fullscreen } from '@styles/layout';
 
 const LoginPage = () => {
@@ -12,9 +13,12 @@ const LoginPage = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>MLRiver</Title>
         <a href="/">
-          <LoginButton onClick={handleLoginClick}>
+          <LoginButton
+            onClick={handleLoginClick}
+            color="black"
+            backgroundColor="white"
+          >
             <img src={GithubLogo} width="30" height="30" alt="GithubLogo" />
             Sign In With Github
           </LoginButton>
@@ -44,25 +48,8 @@ const Wrapper = styled.main`
   }
 `;
 
-const Title = styled.h1`
-  font-size: 36px;
-`;
-
-const LoginButton = styled.button`
-  ${flexCenter}
+const LoginButton = styled(Button)`
   gap: 15px;
-  height: fit-content;
-
-  margin: 10px;
-  padding: 10px 30px;
-
-  color: black;
-  background-color: #ffffff;
-  cursor: pointer;
-  text-decoration: none;
-
-  font-size: 20px;
-  font-weight: 600;
 
   border: 0.5px solid #7e7d7d;
   border-radius: 5px;
