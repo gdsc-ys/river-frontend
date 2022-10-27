@@ -58,4 +58,24 @@ const Navigation = styled(Link)`
   :hover::after {
     opacity: 1;
   }
+
+  :before {
+    content: '';
+    position: absolute;
+    top: 27.5px;
+    left: 59px;
+    width: 0;
+    height: 0;
+
+    opacity: 0;
+    transition: opacity ease 0.3s;
+
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid black;
+  }
+
+  :hover::before {
+    opacity: 1;
+  }
 `;
