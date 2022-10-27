@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import styled from 'styled-components';
 
-import Button from '@components/common/Button';
+import LoggedIn from '@components/common/Header/LoggedIn';
+import NotLoggedIn from '@components/common/Header/NotLoggedIn';
 import LabelNavigation from '@components/common/LabelNavigation';
 import { deployPageUrl, trackingPageUrl } from '@data/urls';
-import { flexCenter } from '@styles/layout';
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   //TODO: Fetch Github Informations
 
   return (
@@ -16,11 +17,15 @@ const Header = () => {
         <LabelNavigation targetPath={trackingPageUrl}>Tracking</LabelNavigation>
         <LabelNavigation targetPath={deployPageUrl}>Deploy</LabelNavigation>
       </NavigationContainer>
-      <LoginLink to="/login">
-        <LoginButton backgroundColor="white" color="#4E98B3" size="16px">
-          Sign in
-        </LoginButton>
-      </LoginLink>
+      {/* Temporary Button for toggle login */}
+      <button
+        onClick={() => {
+          setIsLoggedIn((prev) => !prev);
+        }}
+      >
+        Temp Login
+      </button>
+      {isLoggedIn ? <LoggedIn /> : <NotLoggedIn />}
     </Wrapper>
   );
 };
@@ -64,16 +69,6 @@ const Icon = styled.div`
   color: white;
   font-weight: 700;
   font-size: 18px;
-`;
-
-const LoginButton = styled(Button)`
-  ${flexCenter};
-  padding: 10px;
-  border: 1px #4e98b3 solid;
-`;
-
-const LoginLink = styled(Link)`
-  text-decoration: none;
 `;
 
 const NavigationContainer = styled.div`
