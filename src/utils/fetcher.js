@@ -1,4 +1,5 @@
 import { API_HOST } from '@data/urls';
+import { filterUndefinedValue } from '@utils/filterUndefinedValue';
 
 /**
  * Request GET
@@ -24,7 +25,7 @@ export const post = async (url, data) => {
   const response = await fetch(`${API_HOST}${url}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
+    body: JSON.stringify(filterUndefinedValue(data)),
   });
 
   return response.json();
@@ -40,7 +41,7 @@ export const patch = async (url, data) => {
   const response = await fetch(`${API_HOST}${url}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
+    body: JSON.stringify(filterUndefinedValue(data)),
   });
 
   return response.json();
@@ -51,10 +52,11 @@ export const patch = async (url, data) => {
  * @param {string} url Endpoint
  * @returns {Promise<any>} Response data
  */
-export const remove = async (url) => {
+export const remove = async (url, data) => {
   const response = await fetch(`${API_HOST}${url}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(filterUndefinedValue(data)),
   });
 
   return response.json();
