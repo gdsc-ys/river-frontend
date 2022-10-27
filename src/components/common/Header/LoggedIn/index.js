@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { GoTriangleDown } from 'react-icons/go';
+import { HiOutlineBell } from 'react-icons/hi';
 import styled from 'styled-components';
 
 import GithubMark from '@assets/GitHub-Mark-32px.png';
 import DropdownMenu from '@components/common/Header/LoggedIn/DropdownMenu';
+import SquareIcon from '@components/common/SquareIcon';
+import useComponentVisible from '@hooks/useComponentVisible';
 import { flexCenter } from '@styles/layout';
 
 const LoggedIn = () => {
   //TODO: Fetch user info
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { ref, isVisible, setIsVisible } = useComponentVisible(false);
 
   return (
     <>
@@ -18,16 +21,17 @@ const LoggedIn = () => {
           <UserIcon src={GithubMark}></UserIcon>
           <Username>TestTestTest</Username>
         </UserWrapper>
+        <NotiIcon Icon={HiOutlineBell} size={26} />
         <ChevronWrapper
           onClick={() => {
-            setIsDropdownOpen((prev) => !prev);
+            setIsVisible((prev) => !prev);
           }}
-          dropdown={isDropdownOpen}
+          dropdown={isVisible}
         >
-          <ChevronIcon dropdown={isDropdownOpen} />
+          <ChevronIcon />
         </ChevronWrapper>
       </Wrapper>
-      {isDropdownOpen && <DropdownMenu />}
+      <div ref={ref}>{isVisible && <DropdownMenu />}</div>
     </>
   );
 };
@@ -36,7 +40,7 @@ export default LoggedIn;
 
 const Wrapper = styled.div`
   ${flexCenter}
-  gap: 10px;
+  gap: 15px;
 `;
 
 const UserWrapper = styled.div`
@@ -74,14 +78,24 @@ const ChevronWrapper = styled.div`
 
   cursor: pointer;
   transition: 0.3s ease;
+
+  &:hover {
+    background-color: ${(props) =>
+      props.dropdown ? '#C4F9FF' : 'rgba(0, 0, 0, 0.1)'};
+  }
 `;
 
 const ChevronIcon = styled(GoTriangleDown)`
   position: relative;
   top: 2px;
-  color: ${(props) => (props.dropdown ? '#4E98B3' : 'black')};
+  color: black;
 
   transition: 0.3s ease;
 
   font-size: 16px;
+`;
+
+const NotiIcon = styled(SquareIcon)`
+  padding: 8px;
+  cursor: pointer;
 `;

@@ -12,7 +12,7 @@ const SquareIcon = ({ Icon, size, ...props }) => {
 };
 
 SquareIcon.propTypes = {
-  Icon: PropTypes.element.isRequired,
+  Icon: PropTypes.func.isRequired,
   size: PropTypes.number,
 };
 
