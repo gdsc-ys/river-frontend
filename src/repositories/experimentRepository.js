@@ -1,5 +1,12 @@
 import { get, post } from '@utils/fetcher';
 
+/**
+ * @typedef Tag
+ * @type {Object}
+ * @property {String} key key of tag
+ * @property {String} value value of tag
+ */
+
 class ExperimentRepository {
   /**
    * GET: Get all experiments registed in mlflow.
@@ -33,12 +40,14 @@ class ExperimentRepository {
    * POST : create new experiment by name
    * @param {String} name New experiment name. This field is required.
    * @param {String} artifact_location Location where all artifacts for the experiment are stored. If not provided, the remote server will select an appropriate default.
+   * @param {Array<Tag>} tags Set tags of new experiment. Optional.
    * @returns {String} Unique identifier for the experiment.
    */
-  async createExperiment(name, artifact_location) {
+  async createExperiment(name, artifact_location, tags) {
     return post('/ajax-api/2.0/preview/mlflow/experiments/create', {
       name: name,
       artifact_location: artifact_location,
+      tags: tags,
     });
   }
 
@@ -87,7 +96,7 @@ class ExperimentRepository {
 
   // tag
   /**
-   * Set a tag on an experiment. Experiment tags are metadata that can be updated.
+   * POST : Set a tag on an experiment. Experiment tags are metadata that can be updated.
    * @param {String} experiment_id 	ID of the experiment under which to log the tag. This field is required.
    * @param {String} key Name of the tag. Maximum size depends on storage backend. All storage backends are guaranteed to support key values up to 250 bytes in size. This field is required.
    * @param {String} value String value of the tag being logged. Maximum size depends on storage backend. All storage backends are guaranteed to support key values up to 5000 bytes in size. This field is required.

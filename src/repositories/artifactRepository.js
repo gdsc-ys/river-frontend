@@ -2,7 +2,7 @@ import { get } from '@utils/fetcher';
 
 class ArtifactRepository {
   /**
-   * List artifacts for a run. Takes an optional artifact_path prefix which if specified, the response contains only artifacts with the specified prefix.
+   * GET : List artifacts for a run. Takes an optional artifact_path prefix which if specified, the response contains only artifacts with the specified prefix.
    * @param {String} run_id ID of the run whose artifacts to list. This field is required.
    * @param {String} path Filter artifacts matching this path (a relative path from the root artifact directory).
    * @returns {JSON} returns JSON
