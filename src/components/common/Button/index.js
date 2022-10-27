@@ -3,6 +3,15 @@ import styled, { css } from 'styled-components';
 
 import { flexCenter } from '@styles/layout';
 
+/**
+ * Square Button
+ * @param {children} ChildrenNode children node of button
+ * @param {backgroundColor} BackgroundColor background color of button
+ * @param {color} Color font color or children color of button
+ * @param {size}fontSize font size of button
+ * @returns {DivComponent} Button components, StraightForward!
+ * Addtional Styling should you needed!
+ */
 const Button = ({ children, backgroundColor, color, size, ...props }) => {
   return (
     <ButtonWrapper

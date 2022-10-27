@@ -17,7 +17,7 @@ const Header = () => {
         <LabelNavigation targetPath={trackingPageUrl}>Tracking</LabelNavigation>
         <LabelNavigation targetPath={deployPageUrl}>Deploy</LabelNavigation>
       </NavigationContainer>
-      {/* Temporary Button for toggle login */}
+      {/* Temporary Button to toggle login */}
       <button
         onClick={() => {
           setIsLoggedIn((prev) => !prev);

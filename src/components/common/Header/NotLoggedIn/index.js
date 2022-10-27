@@ -6,15 +6,19 @@ import { flexCenter } from '@styles/layout';
 
 const NotLoggedIn = () => {
   return (
-    <LoginLink to="/login">
-      <LoginButton backgroundColor="white" color="#4E98B3" size="16px">
-        Sign in
-      </LoginButton>
-    </LoginLink>
+    <Wrapper>
+      <LoginLink to="/login">
+        <LoginButton backgroundColor="white" color="#4E98B3" size="16px">
+          Sign in
+        </LoginButton>
+      </LoginLink>
+    </Wrapper>
   );
 };
 
 export default NotLoggedIn;
+
+const Wrapper = styled.div``;
 
 const LoginButton = styled(Button)`
   ${flexCenter};

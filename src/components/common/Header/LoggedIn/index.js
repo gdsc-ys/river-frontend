@@ -1,23 +1,34 @@
+import { useState } from 'react';
 import { GoTriangleDown } from 'react-icons/go';
 import styled from 'styled-components';
 
 import GithubMark from '@assets/GitHub-Mark-32px.png';
+import DropdownMenu from '@components/common/Header/LoggedIn/DropdownMenu';
 import { flexCenter } from '@styles/layout';
 
 const LoggedIn = () => {
   //TODO: Fetch user info
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
-    <Wrapper>
-      {/* TODO: Change to real user */}
-      <UserWrapper>
-        <UserIcon src={GithubMark}></UserIcon>
-        <Username>sadgashsdfgh</Username>
-      </UserWrapper>
-      <ChevronWrapper>
-        <ChevronIcon />
-      </ChevronWrapper>
-    </Wrapper>
+    <>
+      <Wrapper>
+        {/* TODO: Change to real user */}
+        <UserWrapper>
+          <UserIcon src={GithubMark}></UserIcon>
+          <Username>TestTestTest</Username>
+        </UserWrapper>
+        <ChevronWrapper
+          onClick={() => {
+            setIsDropdownOpen((prev) => !prev);
+          }}
+          dropdown={isDropdownOpen}
+        >
+          <ChevronIcon dropdown={isDropdownOpen} />
+        </ChevronWrapper>
+      </Wrapper>
+      {isDropdownOpen && <DropdownMenu />}
+    </>
   );
 };
 
@@ -58,14 +69,19 @@ const ChevronWrapper = styled.div`
   ${flexCenter}
   padding: 12px;
   border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: ${(props) =>
+    props.dropdown ? '#C4F9FF' : 'rgba(0, 0, 0, 0.05)'};
 
   cursor: pointer;
+  transition: 0.3s ease;
 `;
 
 const ChevronIcon = styled(GoTriangleDown)`
   position: relative;
   top: 2px;
+  color: ${(props) => (props.dropdown ? '#4E98B3' : 'black')};
+
+  transition: 0.3s ease;
 
   font-size: 16px;
 `;
