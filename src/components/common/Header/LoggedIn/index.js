@@ -52,7 +52,7 @@ const UserWrapper = styled.div`
 
   transition: 0.2s ease;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.03);
   }
 `;
 
@@ -98,4 +98,10 @@ const ChevronIcon = styled(GoTriangleDown)`
 const NotiIcon = styled(SquareIcon)`
   padding: 8px;
   cursor: pointer;
+
+  transition: 0.2s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 `;

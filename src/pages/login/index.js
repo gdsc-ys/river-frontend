@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import GithubLogo from '@assets/GitHub-Mark-32px.png';
@@ -13,7 +14,7 @@ const LoginPage = () => {
   return (
     <Container>
       <Wrapper>
-        <a href="/">
+        <Link to="/">
           <LoginButton
             onClick={handleLoginClick}
             color="black"
@@ -22,7 +23,7 @@ const LoginPage = () => {
             <img src={GithubLogo} width="30" height="30" alt="GithubLogo" />
             Sign In With Github
           </LoginButton>
-        </a>
+        </Link>
       </Wrapper>
     </Container>
   );
