@@ -48,7 +48,7 @@ class ExperimentRepository {
    * @param {String} new_name If provided, the experiment's name is changed to the new name. The new name must be unique.
    * @returns {null} returns nothing if success.
    *
-   * If experiment_id doesn't exist, return 'error_code' and 'message'
+   * If experiment_id doesn't exist, throws 'error_code' and 'message'
    *
    * If duplicate experiment_id requested, throws 400 Bad Request response
    */
