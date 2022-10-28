@@ -1,4 +1,9 @@
 /**
+ * @namespace typedef
+ */
+
+/**
+ * @exports ExperimentTag
  * @typedef ExperimentTag Tag for an experiment.
  * @type {Object}
  * @property {String} key The tag key.
@@ -6,6 +11,7 @@
  */
 
 /**
+ * @exports ViewType
  * @typedef {String} ACTIVE_ONLY Default. Return only active experiments.
  * @typedef {String} DELETED_ONLY Return only deleted experiments.
  * @typedef {String} ALL Get all experiments.
@@ -13,6 +19,7 @@
  */
 
 /**
+ * @exports Experiment
  * @typedef Experiment Experiment
  * @type {Object}
  * @property {String} experiment_id Unique identifier for the experiment.
@@ -21,10 +28,11 @@
  * @property {String} lifecycle_stage Current life cycle stage of the experiment: “active” or “deleted”. Deleted experiments are not returned by APIs.
  * @property {Number} last_update_time Last update time
  * @property {Number} creation_time Creation time
- * @property {Array<Tag>} tags Additional metadata key-value pairs.
+ * @property {Array<ExperimentTag>} tags Additional metadata key-value pairs.
  */
 
 /**
+ * @exports RegisteredModelTag
  * @typedef RegisteredModelTag Tag for a registered model.
  * @type {Object}
  * @property {String} key The tag key.
@@ -32,6 +40,7 @@
  */
 
 /**
+ * @exports ModelVersionTag
  * @typedef ModelVersionTag Tag for a model version.
  * @type {Object}
  * @property {String} key The tag key.
@@ -39,6 +48,7 @@
  */
 
 /**
+ * @exports ModelVersionStatus
  * @typedef {String} PENDING_REGISTRATION Request to register a new model version is pending as server performs background tasks.
  * @typedef {String} FAILED_REGISTRATION Request to register a new model version has failed.
  * @typedef {String} READY Model version is ready for use.
@@ -46,6 +56,7 @@
  */
 
 /**
+ * @exports ModelVersion
  * @typedef ModelVersion
  * @type {Object}
  * @property {String} name Unique name of the model
@@ -64,6 +75,7 @@
  */
 
 /**
+ * @exports RegisteredModel
  * @typedef RegisteredModel
  * @type {Object}
  * @property {String} name Unique name of the model
@@ -77,6 +89,7 @@
  */
 
 /**
+ * @exports Param
  * @typedef Param Parameters associated with a run.
  * @type {Object}
  * @property {String} key Key identifying this param.
@@ -84,6 +97,7 @@
  */
 
 /**
+ * @exports FileInfo
  * @typedef FileInfo Metadata of a single artifact file or directory.
  * @type {Object}
  * @property {String} path Path relative to the root artifact directory run.
@@ -92,6 +106,7 @@
  */
 
 /**
+ * @exports Metric
  * @typedef Metric Metric associated with a run, represented as a key-value pair.
  * @type {Object}
  * @property {String} key Key identifying this metric.
@@ -101,6 +116,7 @@
  */
 
 /**
+ * @exports RunTag
  * @typedef RunTag Tag for a run.
  * @type {Object}
  * @property {String} key The tag key.
@@ -108,6 +124,7 @@
  */
 
 /**
+ * @exports RunData
  * @typedef RunData Run data (metrics, params, and tags).
  * @type {object}
  * @property {Array<Metric>} metrics Run metrics.
@@ -116,6 +133,7 @@
  */
 
 /**
+ * @exports RunStatus
  * @typedef {String} RUNNING Run has been initiated.
  * @typedef {String} SCHEDULED Run is scheduled to run at a later time.
  * @typedef {String} FINISHED Run has completed.
@@ -125,6 +143,7 @@
  */
 
 /**
+ * @exports RunInfo
  * @typedef RunInfo Metadata of a single run.
  * @type {object}
  * @property {String} run_id Unique identifier for the run.
@@ -138,8 +157,11 @@
  */
 
 /**
+ * @exports Run
  * @typedef Run A single run.
  * @type {Object}
  * @property {RunInfo} info Run metadata.
  * @property {RunData} data Run data.
  */
+
+export {};
