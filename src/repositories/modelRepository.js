@@ -1,11 +1,6 @@
-import { get, patch, post, remove } from '@utils/fetcher';
+import '@interface/typedef';
 
-/**
- * @typedef Tag
- * @type {Object}
- * @property {String} key key of tag
- * @property {String} value value of tag
- */
+import { get, patch, post, remove } from '@utils/fetcher';
 
 class ModelRepository {
   /**
