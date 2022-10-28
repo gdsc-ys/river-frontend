@@ -2,7 +2,7 @@ import { get, post } from '@utils/fetcher';
 
 /**
  * @typedef {import('../interface/typedef.js').Experiment} Experiment
- * @typedef {}
+ * @typedef {import('../interface/typedef.js').ExperimentTag} ExperimentTag
  */
 
 class ExperimentRepository {
@@ -41,8 +41,8 @@ class ExperimentRepository {
   /**
    * POST : create new experiment by name
    * @param {String} name New experiment name. This field is required.
-   * @param {String | undefined} artifact_location Location where all artifacts for the experiment are stored. If not provided, the remote server will select an appropriate default.
-   * @param {Array<ExperimentTag> | undefined} tags Set tags of new experiment. Optional.
+   * @param {?String} artifact_location Location where all artifacts for the experiment are stored. If not provided, the remote server will select an appropriate default.
+   * @param {?Array<ExperimentTag>} tags Set tags of new experiment. Optional.
    * @returns {String} return 'experiment_id' of created experiment
    */
   async createExperiment(name, artifact_location, tags) {
@@ -56,7 +56,7 @@ class ExperimentRepository {
   /**
    * POST : change existing experiment name
    * @param {String} experiment_id ID of the associated experiment. This field is required.
-   * @param {String | undefined} new_name If provided, the experiment's name is changed to the new name. The new name must be unique.
+   * @param {?String} new_name If provided, the experiment's name is changed to the new name. The new name must be unique.
    * @returns {undefined} returns nothing if success.
    *
    * If experiment_id doesn't exist, throws 'error_code' and 'message'

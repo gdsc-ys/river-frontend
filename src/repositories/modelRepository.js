@@ -1,11 +1,16 @@
-import '@interface/typedef';
-
 import { get, patch, post, remove } from '@utils/fetcher';
+
+/**
+ * @typedef {import('../interface/typedef.js').RegisteredModel} RegisteredModel
+ * @typedef {import('../interface/typedef.js').ModelStage} ModelStage
+ * @typedef {import('../interface/typedef.js').ModelVersion} ModelVersion
+ * @typedef {import('../interface/typedef.js').ModelVersionTag} ModelVersionTag
+ */
 
 class ModelRepository {
   /**
    * GET : Get list of registered models.
-   * @returns {JSON} return JSON of registed model details.
+   * @returns {Array<RegisteredModel>} return JSON of registed model details.
    */
   async getModels() {
     return get('/ajax-api/2.0/preview/mlflow/registered-models/list');
@@ -14,7 +19,7 @@ class ModelRepository {
   /**
    * GET : Get registered model information by name.
    * @param {String} name Name of registered model. This field is required.
-   * @returns {JSON} return JSON of registered model details.
+   * @returns {RegisteredModel} return JSON of registered model details.
    *
    * If name doesn't exist, throws 'error_code' and 'message'.
    */
@@ -27,8 +32,8 @@ class ModelRepository {
   /**
    * GET : Get latest registered model information by name.
    * @param {String} name Name of Model. This field is required.
-   * @param {('None' | 'Staging' | 'Production' | 'Archived')} stages Stage filter of model.
-   * @returns return JSON of model details.
+   * @param {?ModelStage} stages Stage filter of model.
+   * @returns {RegisteredModel} return JSON of registered model details.
    *
    * If name doesn't exist or invalid stages, throws 'error_code' and 'message'.
    */
@@ -41,9 +46,9 @@ class ModelRepository {
   /**
    * POST: Create new reigstered model.
    * @param {String} name Name of new registered Model. This field is required.
-   * @param {Array<Tag>} tags Set tags of new registered model. Optional.
-   * @param {String} description Description of new registered model. Optional.
-   * @returns {JSON} return JSON of model details.
+   * @param {?Array<ModelVersionTag>} tags Set tags of new registered model. Optional.
+   * @param {?String} description Description of new registered model. Optional.
+   * @returns {RegisteredModel} return JSON of registered model details.
    *
    * If name doesn't exist, throws 'error_code' and 'message'
    */
@@ -59,7 +64,7 @@ class ModelRepository {
    * PATCH : Rename a registered model.
    * @param {String} name Current name of registered model.
    * @param {String} new_name New name for the model.
-   * @returns {JSON} return JSON of model details.
+   * @returns {RegisteredModel} return JSON of updated registered model details.
    *
    * If name doesn't exist, throws 'error_code' and 'message'
    */
@@ -73,8 +78,8 @@ class ModelRepository {
   /**
    * POST : Update description of a registered model
    * @param {String} name Current name of registered model.
-   * @param {String} description New description for the model.
-   * @returns {JSON} return JSON of model details.
+   * @param {?String} description New description for the model.
+   * @returns {RegisteredModel} return JSON of registered model details.
    *
    * If name doesn't exist, throws 'error_code' and 'message'
    *
@@ -89,7 +94,7 @@ class ModelRepository {
   /**
    * DELETE : Delete selected registered model.
    * @param {String} name Name of registered model.
-   * @returns {null} return nothing is success.
+   * @returns {undefined} return nothing is success.
    *
    * If name doesn't exist, throws 'error_code' and 'message'
    */
@@ -104,9 +109,9 @@ class ModelRepository {
   /**
    * GET : Search registered model by filters
    * @param {String} name Name filter.
-   * @param {Number} max_results Maximum search results.
-   * @param {Boolean} sort_ascend If true, sort result in ascending order.
-   * @returns {JSON} return JSON of search result.
+   * @param {?Number} max_results Maximum search results.
+   * @param {?Boolean} sort_ascend If true, sort result in ascending order.
+   * @returns {Array<RegisteredModel>} return JSON of search result.
    */
   async searchModels(name, max_results = 100, sort_ascend = true) {
     return get(
@@ -122,7 +127,7 @@ class ModelRepository {
    * @param {String} name Name of registered model. This field is required.
    * @param {String} key Name of the tag. Maximum size is 255 bytes. This field is required.
    * @param {String} value String value of the tag being logged. Maximum size is 500 bytes. This field is required.
-   * @returns {Null} return nothing if success.
+   * @returns {undefined} return nothing if success.
    *
    * If name or key or value not specified, throws 'error_code' and 'message'.
    */
@@ -138,7 +143,7 @@ class ModelRepository {
    * DELETE: Delete a tag on a run.
    * @param {String} name Name of registered model. This field is required.
    * @param {String} key Name of the tag.This field is required.
-   * @returns {Null} return nothing if success.
+   * @returns {undefined} return nothing if success.
    *
    * If name or key not specified, throws 'error_code' and 'message'.
    */
@@ -154,7 +159,7 @@ class ModelRepository {
    * GET : Get a model version.
    * @param {String} name Name of the registered model. This field is required.
    * @param {String} version Model version number. This field is required.
-   * @returns {JSON} return JSON of model detail.
+   * @returns {ModelVersion} return JSON of model detail.
    *
    * If name or version doesn't exist, throws 'error_code' and 'message'.
    */
@@ -168,11 +173,11 @@ class ModelRepository {
    * POST : Create new model version (version++)
    * @param {String} name Name of registered model. This field is required.
    * @param {String} source Source URI indicating the location of the model artifacts. This field is required
-   * @param {String} run_id  MLflow run ID for correlation, if `source` was generated by an experiment run in MLflow Tracking.
-   * @param {String} run_link This is the exact link of the run that generated this model version.
-   * @param {Array<Tag>} tags Additional metadata. Must be Array of key-value paired JSON
-   * @param {*} description Description for model version.
-   * @returns {JSON} return JSON of model detail.
+   * @param {?String} run_id  MLflow run ID for correlation, if `source` was generated by an experiment run in MLflow Tracking.
+   * @param {?String} run_link This is the exact link of the run that generated this model version.
+   * @param {?Array<ModelVersionTag>} tags Additional metadata. Must be Array of key-value paired JSON
+   * @param {String} description Description for model version.
+   * @returns {ModelVersion} return JSON of model detail.
    *
    * If name or source doesn't exist, throws 'error_code' and 'message'.
    */
@@ -191,8 +196,8 @@ class ModelRepository {
    * PATCH : Updates a model version
    * @param {String} name Name of a registered model. This field is required.
    * @param {String} version Model version number. This field is required.
-   * @param {String} description Description for model version.
-   * @returns {JSON} return JSON of updated model detail.
+   * @param {?String} description Description for model version.
+   * @returns {ModelVersion} return JSON of updated model detail.
    *
    * If name or source doesn't exist, throws 'error_code' and 'message'.
    */
@@ -208,7 +213,7 @@ class ModelRepository {
    * DELETE : Delete a model version
    * @param {String} name Name of a registered model. This field is required.
    * @param {String} version Model version number. This field is required.
-   * @returns {Null} return nothing if success.
+   * @returns {undefined} return nothing if success.
    */
   async deleteModelVersion(name, version) {
     return remove('/ajax-api/2.0/preview/mlflow/model-versions/delete', {
@@ -226,9 +231,9 @@ class ModelRepository {
    *
    * @param {String} name Name of the registered model. This field is required.
    * @param {String} version Model version number. This field is required.
-   * @param {('None' | 'Staging' | 'Production' | 'Archived')} stage Transition `model_version` to this stage. This field is required.
-   * @param {Boolean} archive_existing_version Change other versions to 'archive' stage
-   * @returns {JSON} return JSON of updated model detail.
+   * @param {ModelStage} stage Transition `model_version` to this stage. This field is required.
+   * @param {?Boolean} archive_existing_version Change other versions to 'archive' stage
+   * @returns {ModelVersion} return JSON of updated model detail.
    */
   async transitionModelVersionStage(
     name,
@@ -254,7 +259,7 @@ class ModelRepository {
    * @param {String} version  Model version number. This field is required.
    * @param {String} key Name of the tag. Maximum size is 255 bytes. This field is required.
    * @param {String} value String value of the tag being logged. Maximum size is 500 bytes. This field is required.
-   * @returns {Null} return nothing if success.
+   * @returns {undefined} return nothing if success.
    *
    * If name or key or value not specified, throws 'error_code' and 'message'.
    */
@@ -272,7 +277,7 @@ class ModelRepository {
    * @param {String} name Name of registered model. This field is required.
    * @param {String} version Model version number. This field is required.
    * @param {String} key Name of the tag. Maximum size is 255 bytes. This field is required.
-   * @returns {Null} return nothing if success.
+   * @returns {undefined} return nothing if success.
    *
    * If name or key or value not specified, throws 'error_code' and 'message'.
    */
@@ -288,7 +293,7 @@ class ModelRepository {
    * GET : Get atrifact URI corresponding to name and version
    * @param {String} name Name of registered model. This field is required.
    * @param {String} version Model version number. This field is required.
-   * @returns {JSON} return artifact URI in JSON format
+   * @returns {String} return artifact URI in JSON format
    */
   async getDownloadURI(name, version) {
     return get(
