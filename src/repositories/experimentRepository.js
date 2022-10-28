@@ -10,10 +10,15 @@ import { get, post } from '@utils/fetcher';
 class ExperimentRepository {
   /**
    * GET: Get all experiments registed in mlflow.
+   * @param {('ACTIVE_ONLY' | 'DELETED_ONLY' | 'ALL')} view_type Qualifier for type of experiments to be returned. If unspecified, return only active experiments.
+   * @param {String} max_results Maximum number of experiments desired. If max_results is unspecified, return all experiments.
+   * @param {String} page_token Token indicating the page of experiments to fetch
    * @returns {JSON} JSOn of experiments sorted by 'experiment_id'
    */
-  async getExperiments() {
-    return get('/ajax-api/2.0/preview/mlflow/experiments/list');
+  async getExperiments(view_type = 'ALL', max_results = '1000') {
+    return get(
+      `/ajax-api/2.0/preview/mlflow/experiments/list?view_type=${view_type}&max_results=${max_results}`,
+    );
   }
 
   /**

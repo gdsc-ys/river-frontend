@@ -277,18 +277,28 @@ class ModelRepository {
    * @param {String} name Name of registered model. This field is required.
    * @param {String} version Model version number. This field is required.
    * @param {String} key Name of the tag. Maximum size is 255 bytes. This field is required.
-   * @param {String} value String value of the tag being logged. Maximum size is 500 bytes. This field is required.
    * @returns {Null} return nothing if success.
    *
    * If name or key or value not specified, throws 'error_code' and 'message'.
    */
-  async deleteModelVersionTag(name, version, key, value) {
+  async deleteModelVersionTag(name, version, key) {
     return remove('/ajax-api/2.0/preview/mlflow/model-versions/delete-tag', {
       name: name,
       version: version,
       key: key,
-      value: value,
     });
+  }
+
+  /**
+   * GET : Get atrifact URI corresponding to name and version
+   * @param {String} name Name of registered model. This field is required.
+   * @param {String} version Model version number. This field is required.
+   * @returns {JSON} return artifact URI in JSON format
+   */
+  async getDownloadURI(name, version) {
+    return get(
+      `/ajax-api/2.0/preview/mlflow/model-versions/get-download-uri?name=${name}&version=${version}`,
+    );
   }
 }
 
