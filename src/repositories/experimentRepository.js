@@ -47,7 +47,7 @@ class ExperimentRepository {
    */
   async createExperiment(name, artifact_location, tags) {
     return post('/ajax-api/2.0/preview/mlflow/experiments/create', {
-      name: name.toString(),
+      name: name,
       artifact_location: artifact_location,
       tags: tags,
     });
@@ -65,8 +65,8 @@ class ExperimentRepository {
    */
   async updateExperiment(experiment_id, new_name) {
     return post('/ajax-api/2.0/preview/mlflow/experiments/update', {
-      experiment_id: experiment_id.toString(),
-      new_name: new_name?.toString(),
+      experiment_id: experiment_id,
+      new_name: new_name,
     });
   }
 
@@ -79,7 +79,7 @@ class ExperimentRepository {
    */
   async deleteExperiment(experiment_id) {
     return post('/ajax-api/2.0/preview/mlflow/experiments/delete', {
-      experiment_id: experiment_id.toString(),
+      experiment_id: experiment_id,
     });
   }
 
@@ -92,7 +92,7 @@ class ExperimentRepository {
    */
   async restoreExperiment(experiment_id) {
     return post('/ajax-api/2.0/preview/mlflow/experiments/delete', {
-      experiment_id: experiment_id.toString(),
+      experiment_id: experiment_id,
     });
   }
 
@@ -108,9 +108,9 @@ class ExperimentRepository {
    */
   async setExperimentTag(experiment_id, key, value) {
     return post('/ajax-api/2.0/preview/mlflow/experiments/set-experiment-tag', {
-      experiment_id: experiment_id.toString(),
-      key: key.toString(),
-      value: value.toString(),
+      experiment_id: experiment_id,
+      key: key,
+      value: value,
     });
   }
 }
