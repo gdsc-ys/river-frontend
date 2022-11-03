@@ -1808,18 +1808,6 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
-"@tanstack/react-table@^8.5.20":
-  version "8.5.20"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-table/-/react-table-8.5.20.tgz#100d64ffc273ed7de5a55b4cb03737e80134de43"
-  integrity sha512-wUKv6L47C/uCMfcJOb0Wib/LwBoaWLIL0uRVPD4K1ItBfIlFW4zD3+TbcOwdj9N3iNzrjocyiNVai+kehXlsjg==
-  dependencies:
-    "@tanstack/table-core" "8.5.20"
-
-"@tanstack/table-core@8.5.20":
-  version "8.5.20"
-  resolved "https://registry.yarnpkg.com/@tanstack/table-core/-/table-core-8.5.20.tgz#0e202e37d3f800366066884268ba058c238ecd6e"
-  integrity sha512-VlHJ8PAOZOQzrlv4k/hQfPaC26hxNvqv7rjZJ82FMWTYBxaq/JwJiNsg9Azrp2PIAj/iqlmcpatIKAIi4TpYGg==
-
 "@testing-library/dom@^8.5.0":
   version "8.19.0"
   resolved "https://registry.npmjs.org/@testing-library/dom/-/dom-8.19.0.tgz"
@@ -7585,6 +7573,11 @@ react-scripts@5.0.1:
     workbox-webpack-plugin "^6.4.1"
   optionalDependencies:
     fsevents "^2.3.2"
+
+react-table@^7.8.0:
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/react-table/-/react-table-7.8.0.tgz#07858c01c1718c09f7f1aed7034fcfd7bda907d2"
+  integrity sha512-hNaz4ygkZO4bESeFfnfOft73iBUj8K5oKi1EcSHPAibEydfsX2MyU6Z8KCr3mv3C9Kqqh71U+DhZkFvibbnPbA==
 
 react@^18.2.0:
   version "18.2.0"
