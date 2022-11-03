@@ -76,9 +76,15 @@ class RunRepository {
     });
   }
 
-  // FIXME: HELP ME!
-  async searchRuns() {
-    return post('/ajax-api/2.0/preview/mlflow/runs/search');
+  /**
+   * POST : get runs by experiment_id.
+   * @param {Array<String>} experiment_id single experiment id. This field is required
+   * @returns return run info related to experiment id query.
+   */
+  async searchRun(experiment_id) {
+    return post('/ajax-api/2.0/preview/mlflow/runs/search', {
+      experiment_ids: [...experiment_id],
+    });
   }
 
   // log

@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
-const TablePage = () => {
-  return (
-    <Wrapper>
-      <Title>Table</Title>
-    </Wrapper>
-  );
-};
+import Table from '@components/tracking/DataTable';
+
+const TablePage = () => (
+  <Wrapper>
+    <Title>Table</Title>
+    <Table />
+  </Wrapper>
+);
 
 export default TablePage;
 
