@@ -7,51 +7,72 @@ const Table = ({ columns, data }) => {
     useTable({ columns, data });
 
   return (
-    <TableWrapper {...getTableProps()}>
-      <Thead>
-        {headerGroups.map((headerGroup, idx) => (
-          <Tr key={idx} {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column, idx) => (
-              <Th key={idx} {...column.getHeaderProps()}>
-                {column.render('Header')}
-              </Th>
-            ))}
-          </Tr>
-        ))}
-      </Thead>
-      <Tbody {...getTableBodyProps()}>
-        {rows.map((row, idx) => {
-          prepareRow(row);
-          return (
-            <Tr key={idx} {...row.getRowProps()}>
-              {row.cells.map((cell, idx) => (
-                <Td key={idx} {...cell.getCellProps()}>
-                  {cell.render('Cell')}
-                </Td>
+    <TableWrapper>
+      <table {...getTableProps()}>
+        <thead>
+          {headerGroups.map((headerGroup, idx) => (
+            <tr key={idx} {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column, idx) => (
+                <th key={idx} {...column.getHeaderProps()}>
+                  {column.render('Header')}
+                </th>
               ))}
-            </Tr>
-          );
-        })}
-      </Tbody>
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map((row, idx) => {
+            prepareRow(row);
+            return (
+              <tr key={idx} {...row.getRowProps()}>
+                {row.cells.map((cell, idx) => (
+                  <td key={idx} {...cell.getCellProps()}>
+                    {cell.render('Cell')}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </TableWrapper>
   );
 };
 
 Table.propTypes = {
   columns: PropTypes.array.isRequired,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export default Table;
 
-const TableWrapper = styled.table``;
+// Style table at here!
+// If wrapping inner jsx element with styled, react throws warning!
+const TableWrapper = styled.div`
+  padding: 16px;
 
-const Thead = styled.thead;
+  table {
+    border: 1px solid black;
+    border-spacing: 0;
 
-const Tr = styled.tr;
+    tr {
+      :last-child {
+        td {
+          border-bottom: 0;
+        }
+      }
+    }
 
-const Th = styled.th;
+    th,
+    td {
+      margin: 0;
+      padding: 10px;
+      border-bottom: 1px solid black;
+      border-right: 1px solid black;
 
-const Td = styled.td``;
-
-const Tbody = styled.tbody``;
+      :last-child {
+        border-right: 0;
+      }
+    }
+  }
+`;
