@@ -18,7 +18,7 @@ export const columnData = [
     },
   },
   {
-    Header: 'End Time',
+    Header: 'Updated',
     accessor: 'info.end_time',
     Cell: (info) => {
       const lastRuntime = dayjs.unix(info.value / 1000).format('YYYY-MM-DD');
@@ -55,34 +55,27 @@ export const columnData = [
     },
   },
   {
-    Header: 'Github',
-    columns: [
-      {
-        Header: 'URL',
-        accessor: 'data.tags',
-        Cell: (info) => {
-          const url = info.value.filter(
-            (el) => el.key === MLFLOW_GIT_REPO_URL,
-          )[0];
-          return url === undefined ? (
-            '-'
-          ) : (
-            <ExtLink href={`${url.value}`}>{url.value}</ExtLink>
-          );
-        },
-      },
-      {
-        Header: 'Git commit',
-        Cell: (info) => {
-          const commit = info.row.cells
-            ?.filter((el) => el.column.Header === 'URL')[0]
-            .value?.filter((el) => el.key === MLFLOW_GIT_COMMIT)[0]
-            .value.substring(0, 7);
-          console.log(commit);
-          return commit === undefined ? '-' : commit + '...';
-        },
-      },
-    ],
+    Header: 'Github URL',
+    accessor: 'data.tags',
+    Cell: (info) => {
+      const url = info.value.filter((el) => el.key === MLFLOW_GIT_REPO_URL)[0];
+      return url === undefined ? (
+        '-'
+      ) : (
+        <ExtLink href={`${url.value}`}>{url.value}</ExtLink>
+      );
+    },
+  },
+  {
+    Header: 'Commit Hash',
+    Cell: (info) => {
+      const commit = info.row.cells
+        ?.filter((el) => el.column.Header === 'Github URL')[0]
+        .value?.filter((el) => el.key === MLFLOW_GIT_COMMIT)[0]
+        .value.substring(0, 7);
+      console.log(commit);
+      return commit === undefined ? '-' : commit + '...';
+    },
   },
 ];
 

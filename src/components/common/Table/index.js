@@ -50,15 +50,21 @@ export default Table;
 // If wrapping inner jsx element with styled, react throws warning!
 const TableWrapper = styled.div`
   padding: 16px;
+  font-size: 16px;
+  background-color: transparent;
 
   table {
-    border: 1px solid black;
     border-spacing: 0;
     text-align: center;
 
     thead {
       th {
         background: #f9f9f9;
+        transition: 0.2s ease;
+
+        :hover {
+          background: rgb(230, 230, 230);
+        }
       }
     }
 
@@ -75,10 +81,9 @@ const TableWrapper = styled.div`
       margin: 0;
       padding: 10px 15px;
       border-bottom: 1px solid black;
-      border-right: 1px solid black;
 
-      :last-child {
-        border-right: 0;
+      :first-child {
+        border-right: 1px solid black;
       }
     }
   }
