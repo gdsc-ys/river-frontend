@@ -1,24 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
 
 import Table from '@components/common/Table';
+import { columnData } from '@components/tracking/DataTable/columnData';
 import { trackingService } from '@services/trackingService';
 import { isObjectEmpty } from '@utils/isObjectEmpty';
-
-dayjs.extend(relativeTime);
-
-const columnData = [
-  {
-    Header: 'Created',
-    accessor: 'info.start_time',
-    Cell: (Info) => {
-      const { $y, $M, $D } = dayjs.unix(Info.cell.value / 1000);
-      return dayjs(`${$y}-${$M + 1}-${$D}`).fromNow();
-    },
-  },
-  { Header: 'Last Runtime', accessor: 'info.end_time' },
-];
 
 const DataTable = () => {
   const [runs, setRuns] = useState({});

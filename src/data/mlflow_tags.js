@@ -1,8 +1,6 @@
-```
-File containing all of the run tags in the mlflow. namespace.
-See the System Tags section in the MLflow Tracking documentation for information on the
-meaning of these tags.
-```;
+// File containing all of the run tags in the mlflow. namespace.
+// See the System Tags section in the MLflow Tracking documentation for information on the
+// meaning of these tags.
 
 export const MLFLOW_EXPERIMENT_SOURCE_ID = 'mlflow.experiment.sourceId';
 export const MLFLOW_EXPERIMENT_SOURCE_TYPE = 'mlflow.experiment.sourceType';

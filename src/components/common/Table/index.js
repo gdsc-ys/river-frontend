@@ -54,6 +54,13 @@ const TableWrapper = styled.div`
   table {
     border: 1px solid black;
     border-spacing: 0;
+    text-align: center;
+
+    thead {
+      th {
+        background: #f9f9f9;
+      }
+    }
 
     tr {
       :last-child {
@@ -66,7 +73,7 @@ const TableWrapper = styled.div`
     th,
     td {
       margin: 0;
-      padding: 10px;
+      padding: 10px 15px;
       border-bottom: 1px solid black;
       border-right: 1px solid black;
 
