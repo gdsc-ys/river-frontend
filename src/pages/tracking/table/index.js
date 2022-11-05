@@ -11,9 +11,7 @@ const TablePage = () => (
 
 export default TablePage;
 
-const Wrapper = styled.div`
-  padding: 30px;
-`;
+const Wrapper = styled.div``;
 
 const Title = styled.h1`
   font-size: 30px;

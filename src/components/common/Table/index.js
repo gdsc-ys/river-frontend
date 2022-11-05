@@ -1,10 +1,21 @@
-import { useTable } from 'react-table';
+import { useMemo } from 'react';
+import { useBlockLayout, useTable } from 'react-table';
+import { useSticky } from 'react-table-sticky';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { customScrollbar } from '@styles/scrollbar';
+
 const Table = ({ columns, data }) => {
+  const defaultColumn = useMemo(
+    () => ({
+      width: 180,
+    }),
+    [],
+  );
+
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+    useTable({ columns, data, defaultColumn }, useSticky, useBlockLayout);
 
   return (
     <TableWrapper>
@@ -49,30 +60,23 @@ export default Table;
 // Style table at here!
 // If wrapping inner jsx element with styled, react throws warning!
 const TableWrapper = styled.div`
-  padding: 16px;
+  margin: 16px;
   font-size: 16px;
-  background-color: transparent;
+  overflow-x: scroll;
+  ${customScrollbar};
 
   table {
     border-spacing: 0;
     text-align: center;
 
-    thead {
-      th {
-        background: #f9f9f9;
-        transition: 0.2s ease;
-
-        :hover {
-          background: rgb(230, 230, 230);
-        }
-      }
+    [data-sticky-td] {
+      position: sticky;
+      background-color: #fafafa;
     }
 
-    tr {
-      :last-child {
-        td {
-          border-bottom: 0;
-        }
+    thead {
+      th {
+        border-bottom: 1px solid black;
       }
     }
 
@@ -80,7 +84,13 @@ const TableWrapper = styled.div`
     td {
       margin: 0;
       padding: 10px 15px;
-      border-bottom: 1px solid black;
+      overflow: hidden;
+      background: #f9f9f9;
+
+      transition: 0.2s ease;
+      :hover {
+        background: rgb(230, 230, 230);
+      }
 
       :first-child {
         border-right: 1px solid black;

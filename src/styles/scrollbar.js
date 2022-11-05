@@ -3,6 +3,7 @@ import { css } from 'styled-components';
 export const customScrollbar = css`
   &::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
   }
 
   &::-webkit-scrollbar-track {

@@ -10,6 +10,12 @@ dayjs.extend(duration);
 
 export const columnData = [
   {
+    Header: 'Run ID',
+    accessor: 'info.run_id',
+    sticky: 'left',
+    width: 300,
+  },
+  {
     Header: 'Created',
     accessor: 'info.start_time',
     Cell: (info) => {
@@ -29,9 +35,15 @@ export const columnData = [
     Header: 'Runtime',
     Cell: (info) => {
       const cell_info = info.row.cells;
-      if (cell_info[1].value && cell_info[0].value) {
-        const endTime = dayjs(cell_info[1].value);
-        const startTime = dayjs(cell_info[0].value);
+      const startTimestamp = cell_info?.filter(
+        (el) => el.column.Header === 'Created',
+      )[0].value;
+      const endTimestamp = cell_info?.filter(
+        (el) => el.column.Header === 'Updated',
+      )[0].value;
+      if (startTimestamp && endTimestamp) {
+        const endTime = dayjs(endTimestamp);
+        const startTime = dayjs(startTimestamp);
         const { days, hours, minutes, seconds, milliseconds } = dayjs.duration(
           endTime - startTime,
         ).$d;
@@ -73,8 +85,7 @@ export const columnData = [
         ?.filter((el) => el.column.Header === 'Github URL')[0]
         .value?.filter((el) => el.key === MLFLOW_GIT_COMMIT)[0]
         .value.substring(0, 7);
-      console.log(commit);
-      return commit === undefined ? '-' : commit + '...';
+      return commit === undefined ? '-' : commit;
     },
   },
 ];
