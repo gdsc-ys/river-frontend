@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * @param {*} init initial state whether the component is visible or not.
+ * @param {Boolean} init initial state whether the component is visible or not.
  * @returns {ref, isVisible, setIsVisible}
  * ref : reference node, clicking outside of referenced node triggers handler
  * isVisible : state whether element is visible.

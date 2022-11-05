@@ -12,7 +12,14 @@ export const customScrollbar = css`
 
   &::-webkit-scrollbar-thumb {
     border-radius: 3px;
-    background-color: rgb(189, 189, 189);
+    background-color: rgb(180, 180, 180);
+    :hover {
+      background-color: rgb(150, 150, 150);
+    }
+
+    :active {
+      background-color: rgb(120, 120, 120);
+    }
   }
 
   &::-webkit-scrollbar-button {

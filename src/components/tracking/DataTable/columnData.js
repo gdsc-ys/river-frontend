@@ -8,11 +8,13 @@ import { MLFLOW_GIT_COMMIT, MLFLOW_GIT_REPO_URL } from '@data/mlflow_tags';
 dayjs.extend(relativeTime);
 dayjs.extend(duration);
 
+// TODO: implement custom sort function!
 export const columnData = [
   {
     Header: 'Run ID',
     accessor: 'info.run_id',
     sticky: 'left',
+    disableSortBy: true,
     width: 300,
   },
   {
@@ -33,6 +35,7 @@ export const columnData = [
   },
   {
     Header: 'Runtime',
+    accessor: 'info_runtime',
     Cell: (info) => {
       const cell_info = info.row.cells;
       const startTimestamp = cell_info?.filter(
@@ -70,7 +73,9 @@ export const columnData = [
     Header: 'Github URL',
     accessor: 'data.tags',
     Cell: (info) => {
-      const url = info.value.filter((el) => el.key === MLFLOW_GIT_REPO_URL)[0];
+      const url = info?.value?.filter(
+        (el) => el.key === MLFLOW_GIT_REPO_URL,
+      )[0];
       return url === undefined ? (
         '-'
       ) : (
@@ -80,11 +85,12 @@ export const columnData = [
   },
   {
     Header: 'Commit Hash',
+    accessor: 'data.commit_hash',
     Cell: (info) => {
-      const commit = info.row.cells
+      const commit = info?.row?.cells
         ?.filter((el) => el.column.Header === 'Github URL')[0]
-        .value?.filter((el) => el.key === MLFLOW_GIT_COMMIT)[0]
-        .value.substring(0, 7);
+        ?.value?.filter((el) => el.key === MLFLOW_GIT_COMMIT)[0]
+        ?.value?.substring(0, 7);
       return commit === undefined ? '-' : commit;
     },
   },
