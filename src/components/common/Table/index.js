@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useBlockLayout, useTable } from 'react-table';
+import { useBlockLayout, useResizeColumns, useTable } from 'react-table';
 import { useSticky } from 'react-table-sticky';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -9,13 +9,20 @@ import { customScrollbar } from '@styles/scrollbar';
 const Table = ({ columns, data }) => {
   const defaultColumn = useMemo(
     () => ({
+      minWidth: 50,
       width: 180,
+      maxWidth: 250,
     }),
     [],
   );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data, defaultColumn }, useSticky, useBlockLayout);
+    useTable(
+      { columns, data, defaultColumn },
+      useSticky,
+      useBlockLayout,
+      useResizeColumns,
+    );
 
   return (
     <TableWrapper>
@@ -26,6 +33,9 @@ const Table = ({ columns, data }) => {
               {headerGroup.headers.map((column, idx) => (
                 <th key={idx} {...column.getHeaderProps()}>
                   {column.render('Header')}
+                  {column.canResize && (
+                    <Resizer {...column.getResizerProps()} />
+                  )}
                 </th>
               ))}
             </tr>
@@ -62,26 +72,38 @@ export default Table;
 const TableWrapper = styled.div`
   margin: 16px;
   font-size: 16px;
-  overflow-x: scroll;
+  overflow-x: auto;
+  white-space: nowrap;
   ${customScrollbar};
 
+  // TODO : Make it Resizable
   table {
     border-spacing: 0;
     text-align: center;
 
     [data-sticky-td] {
-      position: sticky;
+      position: sticky !important;
       background-color: #fafafa;
+      // HARD - CODED
+      box-shadow: 0px 5px 3px #939393;
     }
 
     thead {
+      overflow-y: auto;
+      overflow-x: hidden;
       th {
         border-bottom: 1px solid black;
       }
     }
 
+    tbody {
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
     th,
     td {
+      position: relative;
       margin: 0;
       padding: 10px 15px;
       overflow: hidden;
@@ -97,4 +119,16 @@ const TableWrapper = styled.div`
       }
     }
   }
+`;
+
+const Resizer = styled.div`
+  position: absolute;
+  right: 0;
+
+  width: 10px;
+  height: 100%;
+
+  background: blue;
+  z-index: 1;
+  touch-action: none;
 `;
