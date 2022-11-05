@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   useBlockLayout,
   useResizeColumns,
@@ -11,6 +11,8 @@ import styled from 'styled-components';
 
 import { customScrollbar } from '@styles/scrollbar';
 
+// TODO : Implement Drag-n-Drop by row!
+// TODO : Adjust box-shadow if scrollbar if on leftmost position.
 const Table = ({ columns, data }) => {
   const [hoveredCell, setHoveredCell] = useState(undefined);
   const defaultColumn = useMemo(
@@ -55,7 +57,10 @@ const Table = ({ columns, data }) => {
                       : ''}
                   </SortedSpan>
                   {column.canResize && (
-                    <Resizer {...column.getResizerProps()} />
+                    <Resizer
+                      {...column.getResizerProps()}
+                      onClick={(event) => event.stopPropagation()}
+                    />
                   )}
                 </th>
               ))}
@@ -73,7 +78,7 @@ const Table = ({ columns, data }) => {
                     onMouseOver={() => setHoveredCell(idx + 1)}
                     {...cell.getCellProps()}
                   >
-                    {cell.render('Cell')}
+                    <TextWrapper>{cell.render('Cell')}</TextWrapper>
                   </td>
                 ))}
               </tr>
@@ -91,6 +96,12 @@ Table.propTypes = {
 };
 
 export default Table;
+
+const TextWrapper = styled.div`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
 
 const Resizer = styled.div`
   position: absolute;
@@ -123,7 +134,6 @@ const TableWrapper = styled.div`
   user-select: none;
   ${customScrollbar};
 
-  // TODO : Make it Resizable
   table {
     border-spacing: 0;
     text-align: center;
@@ -132,25 +142,29 @@ const TableWrapper = styled.div`
     [data-sticky-td] {
       position: sticky !important;
       background-color: #fafafa;
-      // HARD - CODED
-      box-shadow: 1px 3px 3px #939393;
+    }
+
+    [data-sticky-last-left-td] {
+      box-shadow: 3px 3px 3px #939393;
     }
 
     thead {
       overflow-y: auto;
       overflow-x: hidden;
+
       th {
         border-bottom: 1px solid black;
+        background-color: #f4f4f4;
 
         :hover {
           ${Resizer} {
-            width: 5px;
+            width: 7.5px;
           }
         }
 
         :active {
           ${Resizer} {
-            width: 10px;
+            width: 15px;
             background-color: #8e8e8e;
           }
         }
@@ -171,16 +185,16 @@ const TableWrapper = styled.div`
       background: #f9f9f9;
 
       transition: 0.2s ease;
-
-      :first-child {
-        border-right: 1px solid black;
-      }
     }
 
     th:nth-child(${(props) => props.hoveredCell}),
     td:nth-child(${(props) => props.hoveredCell}),
     tbody tr:hover {
       background-color: #f1f1f1;
+
+      td {
+        background-color: #f1f1f1;
+      }
     }
   }
 `;
