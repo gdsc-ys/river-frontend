@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { customScrollbar } from '@styles/scrollbar';
+import { textTruncate } from '@styles/layout';
 
 // TODO : Implement Drag-n-Drop by row!
 // TODO : Adjust box-shadow if scrollbar if on leftmost position.
@@ -98,9 +99,7 @@ Table.propTypes = {
 export default Table;
 
 const TextWrapper = styled.div`
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  ${textTruncate};
 `;
 
 const Resizer = styled.div`
@@ -124,7 +123,6 @@ const SortedSpan = styled.span`
 
 // Style table at here!
 // If wrapping inner jsx element with styled, react throws warning!
-// FIXME: Background color performance issue on hover?
 const TableWrapper = styled.div`
   margin: 16px;
   font-size: 16px;

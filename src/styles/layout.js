@@ -27,16 +27,8 @@ export const blockCenter = css`
   margin: 0 auto;
 `;
 
-export const textTrucate = css`
+export const textTruncate = css`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-`;
-
-export const pseudo = ({ display, position, content, width, height }) => css`
-  content: ${content || ''};
-  display: ${display || 'block'};
-  position: ${position || 'absolute'};
-  width: ${width || '100%'};
-  height: ${height || '100%'};
 `;
