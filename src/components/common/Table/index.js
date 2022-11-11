@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   useBlockLayout,
   useResizeColumns,
@@ -7,15 +7,16 @@ import {
 } from 'react-table';
 import { useSticky } from 'react-table-sticky';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
+import useScrollInfo from '@hooks/useScrollInfo';
 import { textTruncate } from '@styles/layout';
 import { customScrollbar } from '@styles/scrollbar';
 
 // TODO : Implement Drag-n-Drop by row!
-// TODO : Adjust box-shadow if scrollbar if on leftmost position.
 const Table = ({ columns, data }) => {
   const [hoveredCell, setHoveredCell] = useState(undefined);
+  const [scrollInfo, setRef] = useScrollInfo();
   const defaultColumn = useMemo(
     () => ({
       minWidth: 50,
@@ -37,6 +38,8 @@ const Table = ({ columns, data }) => {
     <TableWrapper
       hoveredCell={hoveredCell}
       onMouseLeave={() => setHoveredCell(undefined)}
+      ref={setRef}
+      xRatio={scrollInfo.x.percentage}
     >
       <table {...getTableProps()}>
         <thead>
@@ -121,6 +124,10 @@ const SortedSpan = styled.span`
   font-size: 16px;
 `;
 
+const addTableEdge = css`
+  box-shadow: 3px 3px 3px #939393;
+`;
+
 // Style table at here!
 // If wrapping inner jsx element with styled, react throws warning!
 const TableWrapper = styled.div`
@@ -143,7 +150,7 @@ const TableWrapper = styled.div`
     }
 
     [data-sticky-last-left-td] {
-      box-shadow: 3px 3px 3px #939393;
+      ${(props) => (props.xRatio !== 0 ? addTableEdge : null)};
     }
 
     thead {
