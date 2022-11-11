@@ -9,8 +9,8 @@ import { useSticky } from 'react-table-sticky';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { customScrollbar } from '@styles/scrollbar';
 import { textTruncate } from '@styles/layout';
+import { customScrollbar } from '@styles/scrollbar';
 
 // TODO : Implement Drag-n-Drop by row!
 // TODO : Adjust box-shadow if scrollbar if on leftmost position.
