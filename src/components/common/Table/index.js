@@ -13,9 +13,9 @@ import useScrollInfo from '@hooks/useScrollInfo';
 import { textTruncate } from '@styles/layout';
 import { customScrollbar } from '@styles/scrollbar';
 
-// TODO : Implement Drag-n-Drop by row!
 const Table = ({ columns, data }) => {
   const [hoveredCell, setHoveredCell] = useState(undefined);
+  const [clickedCell, setClickedCell] = useState(undefined);
   const [scrollInfo, setRef] = useScrollInfo();
   const defaultColumn = useMemo(
     () => ({
@@ -37,6 +37,7 @@ const Table = ({ columns, data }) => {
   return (
     <TableWrapper
       hoveredCell={hoveredCell}
+      clickedCell={clickedCell}
       onMouseLeave={() => setHoveredCell(undefined)}
       ref={setRef}
       xRatio={scrollInfo.x.percentage}
@@ -49,7 +50,10 @@ const Table = ({ columns, data }) => {
                 <th
                   key={idx}
                   {...column.getHeaderProps(column.getSortByToggleProps())}
-                  onClick={() => column.toggleSortBy(!column.isSortedDesc)}
+                  onClick={() => {
+                    setClickedCell(idx + 1);
+                    column.toggleSortBy(!column.isSortedDesc);
+                  }}
                   onMouseOver={() => setHoveredCell(idx + 1)}
                 >
                   {column.render('Header')}
@@ -200,6 +204,11 @@ const TableWrapper = styled.div`
       td {
         background-color: #f1f1f1;
       }
+    }
+
+    th:nth-child(${(props) => props.clickedCell}),
+    td:nth-child(${(props) => props.clickedCell}) {
+      background-color: #e6f6ff !important;
     }
   }
 `;

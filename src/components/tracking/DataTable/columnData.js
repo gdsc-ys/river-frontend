@@ -25,6 +25,12 @@ export const columnData = [
     accessor: 'info.run_id',
     sticky: 'left',
     width: 150,
+    sortType: (rowA, rowB) => {
+      const a = rowA.values['info.run_id'];
+      const b = rowB.values['info.run_id'];
+
+      return a.localeCompare(b);
+    },
   },
   {
     Header: 'Source',
