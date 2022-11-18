@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { element } from 'prop-types';
+import { useCallback, useRef, useState } from 'react';
 
 import useResizeObserver from '@hooks/useResizeObserver';
 

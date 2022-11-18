@@ -74,14 +74,14 @@ const ChevronWrapper = styled.div`
   padding: 12px;
   border-radius: 12px;
   background-color: ${(props) =>
-    props.dropdown ? '#C4F9FF' : 'rgba(0, 0, 0, 0.05)'};
+    props.dropdown ? '#e6f6ff' : 'rgba(0, 0, 0, 0.05)'};
 
   cursor: pointer;
   transition: 0.3s ease;
 
   &:hover {
     background-color: ${(props) =>
-      props.dropdown ? '#C4F9FF' : 'rgba(0, 0, 0, 0.1)'};
+      props.dropdown ? '#e6f6ff' : 'rgba(0, 0, 0, 0.1)'};
   }
 `;
 
