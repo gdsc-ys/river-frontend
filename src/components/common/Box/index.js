@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Box = ({ title, children }) => {
+const Box = ({ title, children, ...props }) => {
   return (
-    <Wrapper>
+    <Wrapper {...props}>
       <Title>{title}</Title>
       <Content>{children}</Content>
     </Wrapper>
@@ -25,8 +25,8 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 16px;
-  /* font-weight: 400; */
+  font-size: 18px;
+  font-weight: 600;
 `;
 
 const Content = styled.div`
