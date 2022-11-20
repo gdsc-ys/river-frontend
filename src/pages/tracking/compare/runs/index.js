@@ -29,7 +29,7 @@ const RunsPage = () => {
             <RunItem
               key={run.name}
               onClick={() => handleClickRunItem(run.runId)}
-              $active={runs.includes(run.id)}
+              $active={runs.includes(run.runId)}
             >
               {run.name}
             </RunItem>
@@ -37,7 +37,9 @@ const RunsPage = () => {
         </RunList>
       </RunContainer>
       <Content>
-        <Title>Compare</Title>
+        <TitleContainer>
+          <Title>Compare</Title>
+        </TitleContainer>
         <DataTable />
       </Content>
     </Wrapper>
@@ -80,12 +82,15 @@ const RunList = styled.div`
 const RunItem = styled.button`
   padding: 0;
 
+  background: none;
+  border: none;
+
   font-size: 17px;
   font-weight: 600;
-  border: none;
+  text-align: start;
   color: black;
 
-  text-align: start;
+  cursor: pointer;
 
   opacity: ${({ $active }) => ($active ? 1 : 0.3)};
   transition: opacity ease 0.3s;
@@ -101,4 +106,9 @@ const Content = styled.div`
   > :not(:first-child) {
     margin-top: 20px;
   }
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
