@@ -37,4 +37,6 @@ const Wrapper = styled.aside`
 
   background-color: white;
   border-right: 1px solid #00000020;
+
+  z-index: 30;
 `;

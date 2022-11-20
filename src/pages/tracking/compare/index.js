@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
+import DataTable from '@components/tracking/DataTable';
+
 const ComparePage = () => {
   return (
     <Wrapper>
       <Title>Compare</Title>
+      <DataTable />
     </Wrapper>
   );
 };

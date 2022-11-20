@@ -1,7 +1,7 @@
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import DataTable from '@components/tracking/DataTable';
+import Box from '@components/common/Box';
 
 const runList = [
   { name: 'Sample run 1', runId: '1' },
@@ -32,7 +32,23 @@ const RunPage = () => {
           ))}
         </RunList>
       </RunContainer>
-      {runId && <DataTable />}
+      {runId && (
+        <Content>
+          <Title>{runId}</Title>
+          <Box title="Description">
+            {/* Sample data */}
+            <BoxContent>This is a description of Sample run.</BoxContent>
+          </Box>
+          <Box title="Params">
+            {/* Sample data */}
+            <BoxContent>Epochs, ...</BoxContent>
+          </Box>
+          <Box title="Metrics">
+            {/* Sample data */}
+            <BoxContent>Loss History</BoxContent>
+          </Box>
+        </Content>
+      )}
     </Wrapper>
   );
 };
@@ -40,6 +56,7 @@ const RunPage = () => {
 export default RunPage;
 
 const Wrapper = styled.div`
+  flex: 1 1 0;
   height: calc(100vh - 80px);
   display: flex;
 `;
@@ -77,4 +94,23 @@ const RunItem = styled(Link)`
 
   opacity: ${({ $active }) => ($active ? 1 : 0.3)};
   transition: opacity ease 0.3s;
+`;
+
+const Content = styled.div`
+  flex: 1 1 0;
+  padding: 30px;
+
+  overflow-y: scroll;
+
+  > :not(:first-child) {
+    margin-top: 20px;
+  }
+`;
+
+const BoxContent = styled.div`
+  font-size: 15px;
+
+  > :not(:first-child) {
+    margin-top: 10px;
+  }
 `;
