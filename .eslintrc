@@ -16,7 +16,6 @@
     "sourceType": "module"
   },
   "rules": {
-    "react/react-in-jsx-scope": "off",
     "no-unused-vars": "off",
     "no-restricted-imports": [
       "error",
@@ -26,6 +25,9 @@
     ],
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-this-alias": "off",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
     "simple-import-sort/imports": [
       "warn",
       {
@@ -33,8 +35,6 @@
       }
     ],
     "simple-import-sort/exports": "warn",
-    "import/first": "error",
-    "import/newline-after-import": "error",
-    "import/no-duplicates": "error"
+    "react/react-in-jsx-scope": "off"
   }
 }
