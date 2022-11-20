@@ -7,6 +7,7 @@ import LoginPage from '@pages/login';
 import TrackingPage from '@pages/tracking';
 import ComparePage from '@pages/tracking/compare';
 import ExperimentPage from '@pages/tracking/experiment';
+import RunPage from '@pages/tracking/experiment/run';
 import OverviewPage from '@pages/tracking/overview';
 
 function App() {
@@ -19,7 +20,9 @@ function App() {
         <Route path="*" element={<RootPage />}>
           <Route path="tracking" element={<TrackingPage />}>
             <Route path="overview" element={<OverviewPage />} />
-            <Route path="experiment" element={<ExperimentPage />} />
+            <Route path="experiment" element={<ExperimentPage />}>
+              <Route path=":experimentId" element={<RunPage />} />
+            </Route>
             <Route path="compare" element={<ComparePage />} />
           </Route>
           <Route path="deploy" element={<DeployPage />}>
