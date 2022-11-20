@@ -16,7 +16,7 @@
   "plugins": ["react", "simple-import-sort", "import"],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "no-unused-vars": "off",
+    "no-unused-vars": "warn",
     "no-restricted-imports": [
       "error",
       {
