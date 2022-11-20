@@ -36,7 +36,10 @@ const RunsPage = () => {
           ))}
         </RunList>
       </RunContainer>
-      <DataTable />
+      <Content>
+        <Title>Compare</Title>
+        <DataTable />
+      </Content>
     </Wrapper>
   );
 };
@@ -86,4 +89,16 @@ const RunItem = styled.button`
 
   opacity: ${({ $active }) => ($active ? 1 : 0.3)};
   transition: opacity ease 0.3s;
+`;
+
+const Content = styled.div`
+  min-width: 600px;
+  flex: 1 1 0;
+  padding: 30px;
+
+  overflow-y: scroll;
+
+  > :not(:first-child) {
+    margin-top: 20px;
+  }
 `;

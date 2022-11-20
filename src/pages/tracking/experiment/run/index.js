@@ -97,6 +97,7 @@ const RunItem = styled(Link)`
 `;
 
 const Content = styled.div`
+  min-width: 600px;
   flex: 1 1 0;
   padding: 30px;
 
