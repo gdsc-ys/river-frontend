@@ -4,7 +4,7 @@
     "node": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "react", "simple-import-sort", "import"],
+  "plugins": ["@typescript-eslint", "import", "simple-import-sort", "react"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
