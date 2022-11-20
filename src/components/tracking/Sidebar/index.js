@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import IconNavigation from '@components/common/IconNavigation';
 import {
+  comparePageUrl,
   experimentPageUrl,
-  logPageUrl,
   overviewPageUrl,
   tablePageUrl,
 } from '@data/urls';
@@ -19,11 +19,11 @@ const Sidebar = () => {
       <IconNavigation targetPath={experimentPageUrl} Icon={AiOutlineExperiment}>
         Experiment
       </IconNavigation>
+      <IconNavigation targetPath={comparePageUrl} Icon={MdSegment}>
+        Compare
+      </IconNavigation>
       <IconNavigation targetPath={tablePageUrl} Icon={AiOutlineTable}>
         Table
-      </IconNavigation>
-      <IconNavigation targetPath={logPageUrl} Icon={MdSegment}>
-        Log
       </IconNavigation>
     </Wrapper>
   );

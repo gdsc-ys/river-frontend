@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-const LogPage = () => {
+const ComparePage = () => {
   return (
     <Wrapper>
-      <Title>Log</Title>
+      <Title>Compare</Title>
     </Wrapper>
   );
 };
 
-export default LogPage;
+export default ComparePage;
 
 const Wrapper = styled.div`
   padding: 30px;

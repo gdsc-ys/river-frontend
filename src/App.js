@@ -5,8 +5,8 @@ import DeployPage from '@pages/deploy';
 import VersionPage from '@pages/deploy/version';
 import LoginPage from '@pages/login';
 import TrackingPage from '@pages/tracking';
+import ComparePage from '@pages/tracking/compare';
 import ExperimentPage from '@pages/tracking/experiment';
-import LogPage from '@pages/tracking/log';
 import OverviewPage from '@pages/tracking/overview';
 import TablePage from '@pages/tracking/table';
 
@@ -21,8 +21,8 @@ function App() {
           <Route path="tracking" element={<TrackingPage />}>
             <Route path="overview" element={<OverviewPage />} />
             <Route path="experiment" element={<ExperimentPage />} />
+            <Route path="compare" element={<ComparePage />} />
             <Route path="table" element={<TablePage />} />
-            <Route path="log" element={<LogPage />} />
           </Route>
           <Route path="deploy" element={<DeployPage />}>
             <Route path="version" element={<VersionPage />} />
