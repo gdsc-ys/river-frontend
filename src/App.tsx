@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import RootPage from '@pages';
 import DeployPage from '@pages/deploy';
 import VersionPage from '@pages/deploy/version';
+import RootPage from '@pages/index';
 import LoginPage from '@pages/login';
 import TrackingPage from '@pages/tracking';
 import ComparePage from '@pages/tracking/compare';
