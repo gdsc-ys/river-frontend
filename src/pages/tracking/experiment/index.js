@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
+import DataTable from '@components/tracking/DataTable';
+
 const ExperimentPage = () => {
   return (
     <Wrapper>
       <Title>Experiment</Title>
+      <DataTable />
     </Wrapper>
   );
 };

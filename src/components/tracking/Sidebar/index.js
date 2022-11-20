@@ -1,14 +1,9 @@
-import { AiOutlineExperiment, AiOutlineTable } from 'react-icons/ai';
+import { AiOutlineExperiment } from 'react-icons/ai';
 import { MdInfoOutline, MdSegment } from 'react-icons/md';
 import styled from 'styled-components';
 
 import IconNavigation from '@components/common/IconNavigation';
-import {
-  comparePageUrl,
-  experimentPageUrl,
-  overviewPageUrl,
-  tablePageUrl,
-} from '@data/urls';
+import { comparePageUrl, experimentPageUrl, overviewPageUrl } from '@data/urls';
 
 const Sidebar = () => {
   return (
@@ -21,9 +16,6 @@ const Sidebar = () => {
       </IconNavigation>
       <IconNavigation targetPath={comparePageUrl} Icon={MdSegment}>
         Compare
-      </IconNavigation>
-      <IconNavigation targetPath={tablePageUrl} Icon={AiOutlineTable}>
-        Table
       </IconNavigation>
     </Wrapper>
   );

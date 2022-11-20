@@ -8,7 +8,6 @@ export const trackingPageUrl = '/tracking';
 export const overviewPageUrl = '/tracking/overview';
 export const experimentPageUrl = '/tracking/experiment';
 export const comparePageUrl = '/tracking/compare';
-export const tablePageUrl = '/tracking/table';
 
 // Deploy Page
 export const deployPageUrl = '/deploy';

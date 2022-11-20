@@ -8,7 +8,6 @@ import TrackingPage from '@pages/tracking';
 import ComparePage from '@pages/tracking/compare';
 import ExperimentPage from '@pages/tracking/experiment';
 import OverviewPage from '@pages/tracking/overview';
-import TablePage from '@pages/tracking/table';
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
             <Route path="overview" element={<OverviewPage />} />
             <Route path="experiment" element={<ExperimentPage />} />
             <Route path="compare" element={<ComparePage />} />
-            <Route path="table" element={<TablePage />} />
           </Route>
           <Route path="deploy" element={<DeployPage />}>
             <Route path="version" element={<VersionPage />} />
