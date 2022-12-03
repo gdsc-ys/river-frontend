@@ -112,8 +112,6 @@
  * @property {Number} step Step at which to log the metric.
  */
 
-// ----------
-
 /**
  * @typedef RunTag Tag for a run.
  * @type {Object}
