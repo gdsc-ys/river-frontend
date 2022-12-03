@@ -10,6 +10,14 @@ export enum ViewType {
 }
 
 export interface Tag {
-  key: string;
-  value: string;
+  key: string; // The tag key
+  value: string; // The tag value
+}
+
+/**
+ * Parameters associated with a run
+ */
+export interface Param {
+  key: string; // Key identifying this param
+  value: string; // Value associated with this param
 }

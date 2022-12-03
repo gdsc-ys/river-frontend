@@ -103,6 +103,8 @@
  * @property {Number} file_size Size in bytes. Unset for directories.
  */
 
+// ----------
+
 /**
  * @typedef Metric Metric associated with a run, represented as a key-value pair.
  * @type {Object}
