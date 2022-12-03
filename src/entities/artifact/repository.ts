@@ -1,5 +1,8 @@
 import { FileInfo } from '@entities/artifact';
 
+/**
+ * Get artifacts
+ */
 export interface GetArtifactsRequest {
   run_id: string; // ID of the run whose artifacts to list. This field is required
   path?: string; // Filter artifacts matching this path (a relative path from the root artifact directory)
