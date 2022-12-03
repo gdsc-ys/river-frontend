@@ -1,93 +1,91 @@
+import {
+  CreateModelRequest,
+  CreateModelResponse,
+  GetLatestModelVersionsRequest,
+  GetLatestModelVersionsResponse,
+  GetModelRequest,
+  GetModelResponse,
+  GetModelsResponse,
+  RenameModelRequest,
+  RenameModelResponse,
+  UpdateModelRequest,
+  UpdateModelResponse,
+} from '@entities/model/repository';
 import { get, patch, post, remove } from '@utils/fetcher';
-
-/**
- * @typedef {import('../interface/typedef.js').RegisteredModel} RegisteredModel
- * @typedef {import('../interface/typedef.js').ModelStage} ModelStage
- * @typedef {import('../interface/typedef.js').ModelVersion} ModelVersion
- * @typedef {import('../interface/typedef.js').ModelVersionTag} ModelVersionTag
- */
 
 class ModelRepository {
   /**
-   * GET : Get list of registered models.
-   * @returns {Array<RegisteredModel>} return JSON of registed model details.
+   * [GET] Get list of registered models.
    */
-  async getModels() {
+  async getModels(): Promise<GetModelsResponse> {
     return get('/ajax-api/2.0/preview/mlflow/registered-models/list');
   }
 
   /**
-   * GET : Get registered model information by name.
-   * @param {String} name Name of registered model. This field is required.
-   * @returns {RegisteredModel} return JSON of registered model details.
-   *
+   * [GET] Get registered model information by name.
    * If name doesn't exist, throws 'error_code' and 'message'.
    */
-  async getModel(name) {
+  async getModel({ name }: GetModelRequest): Promise<GetModelResponse> {
     return get(
       `/ajax-api/2.0/preview/mlflow/registered-models/get?name=${name}`,
     );
   }
 
   /**
-   * GET : Get latest registered model information by name.
-   * @param {String} name Name of Model. This field is required.
-   * @param {?ModelStage} stages Stage filter of model.
-   * @returns {RegisteredModel} return JSON of registered model details.
-   *
+   * [GET] Get latest registered model information by name.
    * If name doesn't exist or invalid stages, throws 'error_code' and 'message'.
    */
-  async getLatestModelVersions(name, stages) {
+  async getLatestModelVersions({
+    name,
+    stages,
+  }: GetLatestModelVersionsRequest): Promise<GetLatestModelVersionsResponse> {
     return get(
       `/ajax-api/2.0/preview/mlflow/registered-models/get-latest-versions?name=${name}&stages=${stages}`,
     );
   }
 
   /**
-   * POST: Create new reigstered model.
-   * @param {String} name Name of new registered Model. This field is required.
-   * @param {?Array<ModelVersionTag>} tags Set tags of new registered model. Optional.
-   * @param {?String} description Description of new registered model. Optional.
-   * @returns {RegisteredModel} return JSON of registered model details.
-   *
+   * [POST] Create new reigstered model.
    * If name doesn't exist, throws 'error_code' and 'message'
    */
-  async createModel(name, tags, description) {
+  async createModel({
+    name,
+    description,
+    tags,
+  }: CreateModelRequest): Promise<CreateModelResponse> {
     return post('/ajax-api/2.0/preview/mlflow/registered-models/create', {
-      name: name,
-      tags: tags,
-      description: description,
+      name,
+      description,
+      tags,
     });
   }
 
   /**
-   * PATCH : Rename a registered model.
-   * @param {String} name Current name of registered model.
-   * @param {String} new_name New name for the model.
-   * @returns {RegisteredModel} return JSON of updated registered model details.
-   *
+   * [PATCH] Rename a registered model.
    * If name doesn't exist, throws 'error_code' and 'message'
    */
-  async renameModel(name, new_name) {
+  async renameModel({
+    name,
+    new_name,
+  }: RenameModelRequest): Promise<RenameModelResponse> {
     return post('/ajax-api/2.0/preview/mlflow/registered-models/rename', {
-      name: name,
-      new_name: new_name,
+      name,
+      new_name,
     });
   }
 
   /**
-   * POST : Update description of a registered model
-   * @param {String} name Current name of registered model.
-   * @param {?String} description New description for the model.
-   * @returns {RegisteredModel} return JSON of registered model details.
-   *
+   * [POST] Update description of a registered model
    * If name doesn't exist, throws 'error_code' and 'message'
    *
    */
-  async updateModel(name, description) {
+  async updateModel({
+    name,
+    description,
+  }: UpdateModelRequest): Promise<UpdateModelResponse> {
     return patch('/ajax-api/2.0/preview/mlflow/registered-models/update', {
-      name: name,
-      description: description,
+      name,
+      description,
     });
   }
 

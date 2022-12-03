@@ -1,7 +1,7 @@
 import {
   GetMetricHistoryRequest,
   GetMetricHistoryResponse,
-} from '@/entities/metric/repository';
+} from '@entities/metric/repository';
 import { get } from '@utils/fetcher';
 
 class MetricRepository {
