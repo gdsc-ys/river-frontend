@@ -103,8 +103,6 @@
  * @property {Number} file_size Size in bytes. Unset for directories.
  */
 
-// ----------
-
 /**
  * @typedef Metric Metric associated with a run, represented as a key-value pair.
  * @type {Object}
@@ -113,6 +111,8 @@
  * @property {Date} timestamp The timestamp at which this metric was recorded.
  * @property {Number} step Step at which to log the metric.
  */
+
+// ----------
 
 /**
  * @typedef RunTag Tag for a run.
