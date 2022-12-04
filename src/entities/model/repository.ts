@@ -6,7 +6,9 @@ import { ModelStage, ModelVersion, RegisteredModel } from '@entities/model';
  */
 export type GetModelsRequest = void;
 
-export type GetModelsResponse = RegisteredModel[];
+export interface GetModelsResponse {
+  registered_models: RegisteredModel[];
+}
 
 /**
  * Get model
@@ -15,7 +17,9 @@ export interface GetModelRequest {
   name: string; // Name of registered model. This field is required
 }
 
-export type GetModelResponse = RegisteredModel;
+export interface GetModelResponse {
+  registered_model: RegisteredModel;
+}
 
 /**
  * Get latest model versions
@@ -25,7 +29,9 @@ export interface GetLatestModelVersionsRequest {
   stages?: ModelStage; // Stage filter of model
 }
 
-export type GetLatestModelVersionsResponse = RegisteredModel;
+export interface GetLatestModelVersionsResponse {
+  registered_model: RegisteredModel;
+}
 
 /**
  * Create model
@@ -36,7 +42,9 @@ export interface CreateModelRequest {
   tags?: Tag[]; // Set tags of new registered model. Optional
 }
 
-export type CreateModelResponse = RegisteredModel;
+export interface CreateModelResponse {
+  registered_model: RegisteredModel;
+}
 
 /**
  * Rename model
@@ -46,7 +54,9 @@ export interface RenameModelRequest {
   new_name: string; // New name for the model
 }
 
-export type RenameModelResponse = RegisteredModel;
+export interface RenameModelResponse {
+  registered_model: RegisteredModel;
+}
 
 /**
  * Update model
@@ -56,7 +66,9 @@ export interface UpdateModelRequest {
   description?: string; // New description for the model
 }
 
-export type UpdateModelResponse = RegisteredModel;
+export interface UpdateModelResponse {
+  registered_model: RegisteredModel;
+}
 
 /**
  * Delete model
@@ -76,7 +88,9 @@ export interface SearchModelsRequest {
   sort_ascend?: boolean; // If true, sort result in ascending order
 }
 
-export type SearchModelsResponse = RegisteredModel[];
+export interface SearchModelsResponse {
+  registered_models: RegisteredModel[];
+}
 
 /**
  * Set model tag
@@ -107,7 +121,9 @@ export interface GetModelVersionRequest {
   version: string; // Model version number. This field is required
 }
 
-export type GetModelVersionResponse = ModelVersion;
+export interface GetModelVersionResponse {
+  model_version: ModelVersion;
+}
 
 /**
  * Create model version
@@ -121,7 +137,9 @@ export interface CreateModelVersionRequest {
   tags?: Tag[]; // Additional metadata. Must be Array of key-value paired JSON
 }
 
-export type CreateModelVersionResponse = ModelVersion;
+export interface CreateModelVersionResponse {
+  model_version: ModelVersion;
+}
 
 /**
  * Update model version
@@ -132,7 +150,9 @@ export interface UpdateModelVersionRequest {
   description?: string; // Description for model version
 }
 
-export type UpdateModelVersionResponse = ModelVersion;
+export interface UpdateModelVersionResponse {
+  model_version: ModelVersion;
+}
 
 /**
  * Delete model version
@@ -154,7 +174,9 @@ export interface TransitionModelVersionStageRequest {
   archive_existing_version?: boolean; // Change other versions to 'archive' stage
 }
 
-export type TransitionModelVersionStageResponse = ModelVersion;
+export interface TransitionModelVersionStageResponse {
+  model_version: ModelVersion;
+}
 
 /**
  * Set model version tag
@@ -187,4 +209,6 @@ export interface GetDownloadURIRequest {
   version: string; // Model version number. This field is required
 }
 
-export type GetDownloadURIResponse = string; // return artifact URI in JSON format
+export interface GetDownloadURIResponse {
+  artifact_uri: string; // return artifact URI in JSON format
+}
