@@ -8,4 +8,6 @@ export interface GetMetricHistoryRequest {
   metric_key: string; // Name of the metric. This field is required
 }
 
-export type GetMetricHistoryResponse = Metric[];
+export interface GetMetricHistoryResponse {
+  metrics: Metric[];
+}
