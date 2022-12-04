@@ -1,15 +1,39 @@
 import {
   CreateModelRequest,
   CreateModelResponse,
+  CreateModelVersionRequest,
+  CreateModelVersionResponse,
+  DeleteModelRequest,
+  DeleteModelResponse,
+  DeleteModelTagRequest,
+  DeleteModelTagResponse,
+  DeleteModelVersionRequest,
+  DeleteModelVersionResponse,
+  DeleteModelVersionTagRequest,
+  DeleteModelVersionTagResponse,
+  GetDownloadURIRequest,
+  GetDownloadURIResponse,
   GetLatestModelVersionsRequest,
   GetLatestModelVersionsResponse,
   GetModelRequest,
   GetModelResponse,
   GetModelsResponse,
+  GetModelVersionRequest,
+  GetModelVersionResponse,
   RenameModelRequest,
   RenameModelResponse,
+  SearchModelsRequest,
+  SearchModelsResponse,
+  SetModelTagRequest,
+  SetModelTagResponse,
+  SetModelVersionTagRequest,
+  SetModelVersionTagResponse,
+  TransitionModelVersionStageRequest,
+  TransitionModelVersionStageResponse,
   UpdateModelRequest,
   UpdateModelResponse,
+  UpdateModelVersionRequest,
+  UpdateModelVersionResponse,
 } from '@entities/model/repository';
 import { get, patch, post, remove } from '@utils/fetcher';
 
@@ -90,28 +114,27 @@ class ModelRepository {
   }
 
   /**
-   * DELETE : Delete selected registered model.
-   * @param {String} name Name of registered model.
-   * @returns {undefined} return nothing is success.
-   *
+   * [DELETE] Delete selected registered model.
    * If name doesn't exist, throws 'error_code' and 'message'
    */
-  async deleteModel(name) {
+  async deleteModel({
+    name,
+  }: DeleteModelRequest): Promise<DeleteModelResponse> {
     return remove('/ajax-api/2.0/preview/mlflow/registered-models/delete', {
-      name: name,
+      name,
     });
   }
 
-  //TODO: Implement Advanced Search query
-  //https://github.com/mlflow/mlflow/blob/994d291e4cb6bfad93e8b6edfa2580aa82804abd/docs/source/search-experiments.rst#id8
   /**
-   * GET : Search registered model by filters
-   * @param {String} name Name filter.
-   * @param {?Number} max_results Maximum search results.
-   * @param {?Boolean} sort_ascend If true, sort result in ascending order.
-   * @returns {Array<RegisteredModel>} return JSON of search result.
+   * [GET] Search registered model by filters
+   * @todo Implement Advanced Search query
+   * @url https://github.com/mlflow/mlflow/blob/994d291e4cb6bfad93e8b6edfa2580aa82804abd/docs/source/search-experiments.rst#id8
    */
-  async searchModels(name, max_results = 100, sort_ascend = true) {
+  async searchModels({
+    name,
+    max_results = 100,
+    sort_ascend = true,
+  }: SearchModelsRequest): Promise<SearchModelsResponse> {
     return get(
       `/ajax-api/2.0/preview/mlflow/registered-models/search?max_results=${max_results}&
       order_by=name+${sort_ascend ? 'ASC' : 'DESC'}${
@@ -121,102 +144,96 @@ class ModelRepository {
   }
 
   /**
-   * POST : Sets a tag on a run.
-   * @param {String} name Name of registered model. This field is required.
-   * @param {String} key Name of the tag. Maximum size is 255 bytes. This field is required.
-   * @param {String} value String value of the tag being logged. Maximum size is 500 bytes. This field is required.
-   * @returns {undefined} return nothing if success.
-   *
+   * [POST] Sets a tag on a run.
    * If name or key or value not specified, throws 'error_code' and 'message'.
    */
-  async setModelTag(name, key, value) {
+  async setModelTag({
+    name,
+    key,
+    value,
+  }: SetModelTagRequest): Promise<SetModelTagResponse> {
     return post('/ajax-api/2.0/preview/mlflow/registered-models/set-tag', {
-      name: name,
-      key: key,
-      value: value,
+      name,
+      key,
+      value,
     });
   }
 
   /**
-   * DELETE: Delete a tag on a run.
-   * @param {String} name Name of registered model. This field is required.
-   * @param {String} key Name of the tag.This field is required.
-   * @returns {undefined} return nothing if success.
-   *
+   * [DELETE] Delete a tag on a run.
    * If name or key not specified, throws 'error_code' and 'message'.
    */
-  async deleteModelTag(name, key) {
+  async deleteModelTag({
+    name,
+    key,
+  }: DeleteModelTagRequest): Promise<DeleteModelTagResponse> {
     return remove('/ajax-api/2.0/preview/mlflow/registered-models/delete-tag', {
-      name: name,
-      key: key,
+      name,
+      key,
     });
   }
 
-  // Model Version Control
   /**
-   * GET : Get a model version.
-   * @param {String} name Name of the registered model. This field is required.
-   * @param {String} version Model version number. This field is required.
-   * @returns {ModelVersion} return JSON of model detail.
-   *
+   * [GET] Get a model version.
    * If name or version doesn't exist, throws 'error_code' and 'message'.
    */
-  async getModelVersion(name, version) {
+  async getModelVersion({
+    name,
+    version,
+  }: GetModelVersionRequest): Promise<GetModelVersionResponse> {
     return get(
       `/ajax-api/2.0/preview/mlflow/model-versions/get?name=${name}&version=${version}`,
     );
   }
 
   /**
-   * POST : Create new model version (version++)
-   * @param {String} name Name of registered model. This field is required.
-   * @param {String} source Source URI indicating the location of the model artifacts. This field is required
-   * @param {?String} run_id  MLflow run ID for correlation, if `source` was generated by an experiment run in MLflow Tracking.
-   * @param {?String} run_link This is the exact link of the run that generated this model version.
-   * @param {?Array<ModelVersionTag>} tags Additional metadata. Must be Array of key-value paired JSON
-   * @param {String} description Description for model version.
-   * @returns {ModelVersion} return JSON of model detail.
-   *
+   * [POST] Create new model version (version++)
    * If name or source doesn't exist, throws 'error_code' and 'message'.
    */
-  async createModelVersion(name, source, run_id, run_link, description, tags) {
+  async createModelVersion({
+    name,
+    description,
+    source,
+    run_id,
+    run_link,
+    tags,
+  }: CreateModelVersionRequest): Promise<CreateModelVersionResponse> {
     return post('/ajax-api/2.0/preview/mlflow/model-versions/create', {
-      name: name,
-      source: source,
-      run_id: run_id,
-      run_link: run_link,
-      description: description,
-      tags: tags,
+      name,
+      description,
+      source,
+      run_id,
+      run_link,
+      tags,
     });
   }
 
   /**
-   * PATCH : Updates a model version
-   * @param {String} name Name of a registered model. This field is required.
-   * @param {String} version Model version number. This field is required.
-   * @param {?String} description Description for model version.
-   * @returns {ModelVersion} return JSON of updated model detail.
-   *
+   * [PATCH] Updates a model version
    * If name or source doesn't exist, throws 'error_code' and 'message'.
    */
-  async updateModelVersion(name, version, description) {
+  async updateModelVersion({
+    name,
+    version,
+    description,
+  }: UpdateModelVersionRequest): Promise<UpdateModelVersionResponse> {
     return patch('/ajax-api/2.0/preview/mlflow/model-versions/update', {
-      name: name,
-      version: version,
-      description: description,
+      name,
+      version,
+      description,
     });
   }
 
   /**
-   * DELETE : Delete a model version
-   * @param {String} name Name of a registered model. This field is required.
-   * @param {String} version Model version number. This field is required.
-   * @returns {undefined} return nothing if success.
+   * [DELETE] Delete a model version
    */
-  async deleteModelVersion(name, version) {
+  async deleteModelVersion({
+    name,
+    version,
+  }: DeleteModelVersionRequest): Promise<DeleteModelVersionResponse> {
     return remove('/ajax-api/2.0/preview/mlflow/model-versions/delete', {
-      name: name,
-      version: version,
+      name,
+      version,
     });
   }
 
@@ -226,74 +243,66 @@ class ModelRepository {
   // }
 
   /**
-   *
-   * @param {String} name Name of the registered model. This field is required.
-   * @param {String} version Model version number. This field is required.
-   * @param {ModelStage} stage Transition `model_version` to this stage. This field is required.
-   * @param {?Boolean} archive_existing_version Change other versions to 'archive' stage
-   * @returns {ModelVersion} return JSON of updated model detail.
+   * [POST] Transition a model version stage
    */
-  async transitionModelVersionStage(
+  async transitionModelVersionStage({
     name,
     version,
     stage,
     archive_existing_version,
-  ) {
+  }: TransitionModelVersionStageRequest): Promise<TransitionModelVersionStageResponse> {
     return post(
       '/ajax-api/2.0/preview/mlflow/model-versions/transition-stage',
       {
-        name: name,
-        version: version,
-        stage: stage,
-        archive_existing_version: archive_existing_version,
+        name,
+        version,
+        stage,
+        archive_existing_version,
       },
     );
   }
 
-  // Model Version tag
   /**
-   * POST : Sets a tag on a specified version model.
-   * @param {String} name Name of registered model. This field is required.
-   * @param {String} version  Model version number. This field is required.
-   * @param {String} key Name of the tag. Maximum size is 255 bytes. This field is required.
-   * @param {String} value String value of the tag being logged. Maximum size is 500 bytes. This field is required.
-   * @returns {undefined} return nothing if success.
-   *
+   * [POST] Sets a tag on a specified version model.
    * If name or key or value not specified, throws 'error_code' and 'message'.
    */
-  async setModelVersionTag(name, version, key, value) {
+  async setModelVersionTag({
+    name,
+    version,
+    key,
+    value,
+  }: SetModelVersionTagRequest): Promise<SetModelVersionTagResponse> {
     return post('/ajax-api/2.0/preview/mlflow/model-versions/set-tag', {
-      name: name,
-      version: version,
-      key: key,
-      value: value,
+      name,
+      version,
+      key,
+      value,
     });
   }
 
   /**
-   * DELETE : Deletes a tag on a specified version model.
-   * @param {String} name Name of registered model. This field is required.
-   * @param {String} version Model version number. This field is required.
-   * @param {String} key Name of the tag. Maximum size is 255 bytes. This field is required.
-   * @returns {undefined} return nothing if success.
-   *
+   * [DELETE] Deletes a tag on a specified version model.
    * If name or key or value not specified, throws 'error_code' and 'message'.
    */
-  async deleteModelVersionTag(name, version, key) {
+  async deleteModelVersionTag({
+    name,
+    version,
+    key,
+  }: DeleteModelVersionTagRequest): Promise<DeleteModelVersionTagResponse> {
     return remove('/ajax-api/2.0/preview/mlflow/model-versions/delete-tag', {
-      name: name,
-      version: version,
-      key: key,
+      name,
+      version,
+      key,
     });
   }
 
   /**
-   * GET : Get atrifact URI corresponding to name and version
-   * @param {String} name Name of registered model. This field is required.
-   * @param {String} version Model version number. This field is required.
-   * @returns {String} return artifact URI in JSON format
+   * [GET] Get atrifact URI corresponding to name and version
    */
-  async getDownloadURI(name, version) {
+  async getDownloadURI({
+    name,
+    version,
+  }: GetDownloadURIRequest): Promise<GetDownloadURIResponse> {
     return get(
       `/ajax-api/2.0/preview/mlflow/model-versions/get-download-uri?name=${name}&version=${version}`,
     );
