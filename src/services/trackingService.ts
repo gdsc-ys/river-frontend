@@ -13,15 +13,15 @@ class TrackingService {
   }
 
   async getExperiments(request: GetExperimentsRequest) {
-    const experiments = await this.experimentRepository.getExperiments(request);
+    const response = await this.experimentRepository.getExperiments(request);
 
-    return experiments;
+    return response;
   }
 
   async searchRun(request: SearchRunRequest) {
-    const runs = await this.runRepository.searchRun(request);
+    const response = await this.runRepository.searchRun(request);
 
-    return runs;
+    return response;
   }
 }
 

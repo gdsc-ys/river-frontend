@@ -9,9 +9,9 @@ class DeployService {
   }
 
   async getModelVersion(request: GetModelVersionRequest) {
-    const version = await this.modelRepository.getModelVersion(request);
+    const response = await this.modelRepository.getModelVersion(request);
 
-    return version;
+    return response;
   }
 }
 
