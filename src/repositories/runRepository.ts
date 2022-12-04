@@ -89,10 +89,10 @@ class RunRepository {
    * [POST] get runs by experiment_id.
    */
   async searchRun({
-    experiment_id,
+    experiment_ids,
   }: SearchRunRequest): Promise<SearchRunResponse> {
     return post('/ajax-api/2.0/preview/mlflow/runs/search', {
-      experiment_ids: [experiment_id],
+      experiment_ids,
     });
   }
 

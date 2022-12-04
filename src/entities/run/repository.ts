@@ -9,7 +9,9 @@ export interface GetRunRequest {
   run_id: string; // run ID. This field is required
 }
 
-export type GetRunResponse = Run; // returns a single value for each metric key: the most recently logged metric value at the largest step
+export interface GetRunResponse {
+  run: Run; // returns a single value for each metric key: the most recently logged metric value at the largest step
+}
 
 /**
  * Create run
@@ -21,7 +23,9 @@ export interface CreateRunRequest {
   tags?: Tag[]; // Tags of new run. see '@data/mlflow_tags.js' for available run tags
 }
 
-export type CreateRunResponse = Run;
+export interface CreateRunResponse {
+  run: Run;
+}
 
 /**
  * Update run
@@ -33,7 +37,9 @@ export interface UpdateRunRequest {
   end_time?: Date; // Timestamp of when the run ended
 }
 
-export type UpdateRunResponse = Run;
+export interface UpdateRunResponse {
+  run: Run;
+}
 
 /**
  * Delete run
@@ -57,10 +63,12 @@ export type RestoreRunResponse = void;
  * Search run
  */
 export interface SearchRunRequest {
-  experiment_id: string; // single experiment id. This field is required
+  experiment_ids: string[]; // single experiment id. This field is required
 }
 
-export type SearchRunResponse = Run[];
+export interface SearchRunResponse {
+  runs: Run[];
+}
 
 /**
  * Log metric
