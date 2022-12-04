@@ -9,7 +9,9 @@ export interface GetExperimentsRequest {
   max_results?: number; // Maximum number of experiments desired. If max_results is unspecified, return all experiments
 }
 
-export type GetExperimentsResponse = Experiment[];
+export interface GetExperimentsResponse {
+  experiments: Experiment[];
+}
 
 /**
  * Get experiment
@@ -18,7 +20,9 @@ export interface GetExperimentRequest {
   experiment_id: string; // ID of the associated experiment. This field is required
 }
 
-export type GetExperimentResponse = Experiment;
+export interface GetExperimentResponse {
+  experiment: Experiment;
+}
 
 /**
  * Create experiment
@@ -29,7 +33,9 @@ export interface CreateExperimentRequest {
   tags?: Tag[]; // Set tags of new experiment. Optional
 }
 
-export type CreateExperimentResponse = string; // 'experiment_id' of created experiment
+export interface CreateExperimentResponse {
+  experiment_id: string;
+}
 
 /**
  * Update experiment
